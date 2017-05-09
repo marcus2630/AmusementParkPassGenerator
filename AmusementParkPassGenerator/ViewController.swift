@@ -12,7 +12,23 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let manager = Entrant(.manager)
+        let hourly = Entrant(.hourlyEmployeeFoodService)
+        
+
+
+        for discount in manager.discountAccess {
+            print("\(discount)\n")
+        }
+        
+        for discount in hourly.discountAccess {
+            print("\(discount)\n")
+        }
+        
+        for access in hourly.areaAccess {
+            print("\(access)\n")
+        }
     }
 
     override func didReceiveMemoryWarning() {
