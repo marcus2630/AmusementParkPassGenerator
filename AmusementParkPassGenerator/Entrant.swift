@@ -9,14 +9,71 @@
 import Foundation
 
 
-extension Entrant {
-   var areaAccess: [AreaAccess] {
-        var areaAccess: [AreaAccess]
+enum GuestType {
+    case classicGuest
+    case vipGuest
+    case freeChildGuest
+}
 
+enum EmployeeType {
+    case hourlyEmployeeFoodService
+    case hourlyEmployeeRideService
+    case hourlyEmployeeMaintenance
+    case manager
+}
+
+
+// MARK: - PROTOCOLS
+
+
+
+protocol GuestEntrant {
+    var type: GuestType { get }
+    var discountAcces: [DiscountAccess]? { get }
+    var profile: Profile? { get set }
+}
+
+protocol EmployeeEntrant {
+    var type: EmployeeType { get }
+    var discountAccess: [DiscountAccess] { get }
+    var profile: Profile { get set }
+}
+
+
+
+
+// MARK: - CLASSES
+
+class Guest: GuestEntrant {
+    
+    var type: GuestType
+    var profile: Profile?
+    
+    init(_ type: GuestType, profile: Profile) {
+        self.type = type
+        self.profile = profile
+    }
+}
+
+class Employee: EmployeeEntrant {
+    var type: EmployeeType
+    var profile: Profile
+    
+    init(_ type: EmployeeType, profile: Profile) {
+        self.type = type
+        self.profile = profile
+    }
+}
+
+
+
+// MARK: - EXTENSIONS
+
+extension Employee {
+    var areaAccess: [AreaAccess] {
+        var areaAccess: [AreaAccess]
+        
         switch type {
-        case .classicGuest,
-             .vipGuest,
-             .freeChildGuest:               areaAccess = [.amusement]
         case .hourlyEmployeeFoodService:    areaAccess = [.amusement, .kitchen]
         case .hourlyEmployeeRideService:    areaAccess = [.amusement, .rideControl]
         case .hourlyEmployeeMaintenance:    areaAccess = [.amusement, .kitchen, .maintenance, .rideControl]
@@ -28,10 +85,6 @@ extension Entrant {
     var discountAccess: [DiscountAccess] {
         var discountAccess: [DiscountAccess]
         switch type {
-        case .classicGuest,
-             .freeChildGuest:               discountAccess = []
-        case .vipGuest:                     discountAccess = [.discountOnFood(.ten), .discountOnMerchandise(.twentyFive)]
-        
         case .hourlyEmployeeFoodService,
              .hourlyEmployeeMaintenance,
              .hourlyEmployeeRideService:    discountAccess = [.discountOnFood(.fifteen), .discountOnMerchandise(.twentyFive)]
@@ -40,17 +93,58 @@ extension Entrant {
         return discountAccess
     }
     
-    
-}
-
-
-
-
-struct Entrant {
-    var type: EntrantType = .classicGuest
-    
-    init(_ type: EntrantType) {
-        self.type = type
+    var rideAccess: [RideAccess] {
+        var rides: [RideAccess]
+        
+        switch type {
+             case .hourlyEmployeeFoodService,
+                  .hourlyEmployeeMaintenance,
+                  .hourlyEmployeeRideService,
+                  .manager:                      rides = [.accessAllRides]
+        }
+        return rides
     }
+    
+    
 }
+
+extension Guest {
+   var areaAccess: [AreaAccess] {
+        var areaAccess: [AreaAccess]
+
+        switch type {
+        case .classicGuest,
+             .vipGuest,
+             .freeChildGuest:               areaAccess = [.amusement]
+        }
+        return areaAccess
+    }
+    
+    var discountAcces: [DiscountAccess]? {
+        var discountAccess: [DiscountAccess]?
+        switch type {
+        case .classicGuest,
+             .freeChildGuest:               discountAccess = nil
+        case .vipGuest:                     discountAccess = [.discountOnFood(.ten), .discountOnMerchandise(.twentyFive)]
+        }
+        return discountAccess
+    }
+    
+    var rideAccess: [RideAccess] {
+        var rides: [RideAccess]
+        
+        switch type {
+            case    .classicGuest,
+                    .freeChildGuest:               rides = [.accessAllRides]
+            case    .vipGuest:                     rides = [.accessAllRides, .skipAllLines]
+        }
+        return rides
+    }
+    
+    
+}
+
+
+
+
 

@@ -16,7 +16,7 @@
 		2C09AA631EC102AD007304DE /* AmusementParkPassGeneratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09AA621EC102AD007304DE /* AmusementParkPassGeneratorUITests.swift */; };
 		2C09AA711EC103BF007304DE /* Entrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09AA701EC103BF007304DE /* Entrant.swift */; };
 		2C09AA731EC23371007304DE /* Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09AA721EC23371007304DE /* Access.swift */; };
-		2C09AA751EC23381007304DE /* EntrantType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09AA741EC23381007304DE /* EntrantType.swift */; };
+		2C09AA751EC23381007304DE /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09AA741EC23381007304DE /* Profile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +52,7 @@
 		2C09AA641EC102AD007304DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C09AA701EC103BF007304DE /* Entrant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entrant.swift; sourceTree = "<group>"; };
 		2C09AA721EC23371007304DE /* Access.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Access.swift; sourceTree = "<group>"; };
-		2C09AA741EC23381007304DE /* EntrantType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntrantType.swift; sourceTree = "<group>"; };
+		2C09AA741EC23381007304DE /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +106,7 @@
 				2C09AA421EC102AD007304DE /* AppDelegate.swift */,
 				2C09AA441EC102AD007304DE /* ViewController.swift */,
 				2C09AA701EC103BF007304DE /* Entrant.swift */,
-				2C09AA741EC23381007304DE /* EntrantType.swift */,
+				2C09AA741EC23381007304DE /* Profile.swift */,
 				2C09AA721EC23371007304DE /* Access.swift */,
 				2C09AA461EC102AD007304DE /* Main.storyboard */,
 				2C09AA491EC102AD007304DE /* Assets.xcassets */,
@@ -271,7 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C09AA751EC23381007304DE /* EntrantType.swift in Sources */,
+				2C09AA751EC23381007304DE /* Profile.swift in Sources */,
 				2C09AA711EC103BF007304DE /* Entrant.swift in Sources */,
 				2C09AA451EC102AD007304DE /* ViewController.swift in Sources */,
 				2C09AA731EC23371007304DE /* Access.swift in Sources */,
@@ -528,6 +528,7 @@
 				2C09AA691EC102AD007304DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2C09AA6A1EC102AD007304DE /* Build configuration list for PBXNativeTarget "AmusementParkPassGeneratorTests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +537,7 @@
 				2C09AA6C1EC102AD007304DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2C09AA6D1EC102AD007304DE /* Build configuration list for PBXNativeTarget "AmusementParkPassGeneratorUITests" */ = {
 			isa = XCConfigurationList;
@@ -544,6 +546,7 @@
 				2C09AA6F1EC102AD007304DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

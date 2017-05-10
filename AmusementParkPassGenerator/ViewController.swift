@@ -13,22 +13,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let manager = Entrant(.manager)
-        let hourly = Entrant(.hourlyEmployeeFoodService)
+        let manager = Guest(.classicGuest, profile: Profile(firstName: "Marcus", lastName: "Klausen", streetAddress: "Østergården 20", city: "Ishøj", state: "København", zipCode: 2630, birthday: nil))
         
-
-
-        for discount in manager.discountAccess {
-            print("\(discount)\n")
-        }
-        
-        for discount in hourly.discountAccess {
-            print("\(discount)\n")
-        }
-        
-        for access in hourly.areaAccess {
-            print("\(access)\n")
-        }
     }
 
     override func didReceiveMemoryWarning() {
