@@ -32,26 +32,12 @@ struct Profile {
         self.birthday = birthday
     }
     
-    init(freeChildWithBirthday: Date?, firstName: String?, lastName: String?, street: String?, city: String?, state: String?, zip: Int?) throws {
-
-        
+    init(freeChildWithBirthday: Date, firstName: String?, lastName: String?, street: String?, city: String?, state: String?, zip: Int?) throws {
         self.init(withFirstName: firstName, lastName: lastName, street: street, city: city, state: state, zip: zip, birthday: freeChildWithBirthday)
         
     }
     
-    init(employeeWithFirstName: String?, lastName: String?, street: String?, city: String?, state: String?, zip: Int?) throws {
-        
-        guard let name = employeeWithFirstName else {
-            throw ProfileError.InvalidData(description: "First name is missing")
-        }
-        
-        guard let _ = lastName else {
-            throw ProfileError.InvalidData(description: "Last name is missing")
-        }
-        
-        guard let street = street, let city = city, let state = state, let zip = zip else {
-            throw ProfileError.InvalidData(description: "Location information is incomplete.")
-        }
+    init(employeeWithFirstName: String, lastName: String, street: String, city: String, state: String, zip: Int) throws {
         self.init(withFirstName: name, lastName: lastName, street: street, city: city, state: state, zip: zip, birthday: nil)
         
             
