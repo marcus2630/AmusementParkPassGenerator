@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum EmployeeError: Error {
+    case InvalidData(data: String)
+}
+
 enum EmployeeType {
     case foodService
     case rideService
@@ -19,7 +23,32 @@ class Employee: EmployeeEntrant {
     var type: EmployeeType
     var profile: Profile
     
-    init(as type: EmployeeType, withInformation profile: Profile) {
+    init(as type: EmployeeType, withInformation profile: Profile) throws {
+        
+        guard profile.firstName != nil else {
+            throw EmployeeError.InvalidData(data: "first name")
+        }
+        
+        guard profile.lastName != nil else {
+            throw EmployeeError.InvalidData(data: "last name")
+        }
+        
+        guard profile.city != nil else {
+            throw EmployeeError.InvalidData(data: "city")
+        }
+        
+        guard profile.state != nil else {
+            throw EmployeeError.InvalidData(data: "state")
+        }
+        
+        guard profile.street != nil else {
+            throw EmployeeError.InvalidData(data: "street address")
+        }
+        
+        guard profile.zip != nil else {
+            throw EmployeeError.InvalidData(data: "zip code")
+        }
+        
         self.type = type
         self.profile = profile
     }
