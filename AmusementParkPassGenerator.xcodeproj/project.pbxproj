@@ -105,8 +105,8 @@
 			children = (
 				2C09AA421EC102AD007304DE /* AppDelegate.swift */,
 				2C09AA441EC102AD007304DE /* ViewController.swift */,
-				2C09AA701EC103BF007304DE /* Entrant.swift */,
 				2C09AA741EC23381007304DE /* Profile.swift */,
+				2C09AA701EC103BF007304DE /* Entrant.swift */,
 				2C09AA721EC23371007304DE /* Access.swift */,
 				2C09AA461EC102AD007304DE /* Main.storyboard */,
 				2C09AA491EC102AD007304DE /* Assets.xcassets */,

@@ -13,7 +13,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let manager = Guest(.classicGuest, profile: Profile(firstName: "Marcus", lastName: "Klausen", streetAddress: "Østergården 20", city: "Ishøj", state: "København", zipCode: 2630, birthday: nil))
+        
+        // Creating employee (manager) instance with profile
+        do {
+            let manager = try Employee(as: .manager, withInformation: .init(employeeWithFirstName: "Martin", lastName: "Enghave", street: "Wonderstreet", city: "Taastrup", state: "Copenhagen", zip: 1620))
+        } catch ProfileError.InvalidData(let description) {
+            print("\(description)")
+        } catch let error {
+            print("Something else went wrong")
+        }
+        
         
     }
 
