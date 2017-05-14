@@ -38,7 +38,7 @@ struct Profile {
     }
     
     init(employeeWithFirstName: String, lastName: String, street: String, city: String, state: String, zip: Int) throws {
-        self.init(withFirstName: name, lastName: lastName, street: street, city: city, state: state, zip: zip, birthday: nil)
+        self.init(withFirstName: employeeWithFirstName, lastName: lastName, street: street, city: city, state: state, zip: zip, birthday: nil)
         
             
     }
