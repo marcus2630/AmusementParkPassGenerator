@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum GuestError: Error {
+    case InvalidData(data: String)
+}
+
 enum GuestType {
     case classic
     case vip
@@ -19,7 +23,14 @@ class Guest: GuestEntrant {
     var type: GuestType
     var profile: Profile?
     
-    init(as type: GuestType, withInformation profile: Profile) {
+    init(as type: GuestType, withInformation profile: Profile) throws {
+        
+        if type == .freeChild {
+            guard profile.birthday != nil else {
+                throw GuestError.InvalidData(data: "birthday")
+            }
+        }
+        
         self.type = type
         self.profile = profile
     }
