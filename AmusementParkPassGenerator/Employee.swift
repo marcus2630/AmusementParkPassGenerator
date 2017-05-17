@@ -25,23 +25,23 @@ class Employee: EmployeeEntrant {
     
     init(as type: EmployeeType, withInformation profile: Profile) throws {
         
-        guard profile.firstName != nil else {
+        guard profile.firstName != nil && profile.firstName != "" else {
             throw EmployeeError.InvalidData(data: "first name")
         }
         
-        guard profile.lastName != nil else {
+        guard profile.lastName != nil && profile.lastName != "" else {
             throw EmployeeError.InvalidData(data: "last name")
         }
         
-        guard profile.city != nil else {
+        guard profile.city != nil && profile.city != "" else {
             throw EmployeeError.InvalidData(data: "city")
         }
         
-        guard profile.state != nil else {
+        guard profile.state != nil && profile.state != "" else {
             throw EmployeeError.InvalidData(data: "state")
         }
         
-        guard profile.street != nil else {
+        guard profile.street != nil && profile.street != "" else {
             throw EmployeeError.InvalidData(data: "street address")
         }
         
