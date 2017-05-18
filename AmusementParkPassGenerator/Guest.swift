@@ -34,6 +34,40 @@ class Guest: GuestEntrant {
         self.type = type
         self.profile = profile
     }
+    
+    func checkAccess(for access: Any, in accessType: Access) {
+        if accessType == .areaAccess {
+            for area in areaAccess {
+                if area == access as? AreaAccess {
+                    print("Access granted!")
+                } else {
+                    print("Access denied!")
+                }
+            }
+        }
+        
+        if accessType == .discountAccess {
+            if let discountAccess = discountAccess {
+                for discount in discountAccess {
+                    if discount == access as? DiscountAccess {
+                        print("Access granted!")
+                    } else {
+                        print("Access denied")
+                    }
+                }
+            }
+        }
+        
+        if accessType == .rideAccess {
+            for ride in rideAccess {
+                if ride == access as? RideAccess {
+                    print("Access granted!")
+                } else {
+                    print("Access denied")
+                }
+            }
+        }
+    }
 }
 
 extension Guest {
@@ -48,7 +82,7 @@ extension Guest {
         return areaAccess
     }
     
-    var discountAcces: [DiscountAccess]? {
+    var discountAccess: [DiscountAccess]? {
         var discountAccess: [DiscountAccess]?
         switch type {
         case .classic,

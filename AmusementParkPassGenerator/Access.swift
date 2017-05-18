@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum Access {
+    case areaAccess, rideAccess, discountAccess
+}
+
 enum AreaAccess {
     case amusement
     case kitchen
