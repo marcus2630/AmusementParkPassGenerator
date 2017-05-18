@@ -86,7 +86,7 @@ extension Guest {
         var discountAccess: [DiscountAccess]?
         switch type {
         case .classic,
-             .freeChild:               discountAccess = nil
+             .freeChild:               discountAccess = []
         case .vip:                     discountAccess = [.discountOnFood(.ten), .discountOnMerchandise(.twentyFive)]
         }
         return discountAccess
