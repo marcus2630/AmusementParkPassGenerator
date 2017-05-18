@@ -47,15 +47,19 @@ class Guest: GuestEntrant {
         }
         
         if accessType == .discountAccess {
-            if let discountAccess = discountAccess {
-                for discount in discountAccess {
-                    if discount == access as? DiscountAccess {
-                        print("Access granted!")
-                    } else {
-                        print("Access denied")
-                    }
+            if let unwrapped = discountAccess {
+                for discount in unwrapped {
+                        if discount == access as? DiscountAccess   {
+                            print("Access granted!")
+                        } else {
+                            print("Access denied")
+                  }
+                
                 }
+            } else {
+                print("Access denied")
             }
+
         }
         
         if accessType == .rideAccess {
@@ -86,7 +90,7 @@ extension Guest {
         var discountAccess: [DiscountAccess]?
         switch type {
         case .classic,
-             .freeChild:               discountAccess = []
+             .freeChild:               discountAccess = nil
         case .vip:                     discountAccess = [.discountOnFood(.ten), .discountOnMerchandise(.twentyFive)]
         }
         return discountAccess
