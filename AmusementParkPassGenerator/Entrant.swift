@@ -22,7 +22,7 @@ protocol EmployeeEntrant: Entrant {
 
 protocol GuestEntrant: Entrant {
     var type: GuestType { get }
-    var discountAcces: [DiscountAccess]? { get }
+    var discountAccess: [DiscountAccess]? { get }
     var profile: Profile? { get set }
 }
 

@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias percent = Int
+
 enum Access {
     case areaAccess, rideAccess, discountAccess
 }
@@ -26,15 +28,19 @@ enum RideAccess {
 }
 
 
-enum DiscountRate: Int {
-    case ten = 10
-    case fifteen = 15
-    case twenty = 20
-    case twentyFive = 25
-}
+
+
+
+// Having associated values on enum when casting to it gives error: Cannot convert type foo to argument type '_NilOptionalComparisonType'
+//    enum DiscountAccess {
+//    case discountOnFood(percent)
+//    case discountOnMerchandise(percent)
+//      }
+
+// Work around for now, individual cases
 
 enum DiscountAccess {
-    case discountOnFood(DiscountRate)
-    case discountOnMerchandise(DiscountRate)
+    case discountOnFood10, discountOnFood15, discountOnFood20, discountOnFood25
+    case discountOnMerchandise10, discountOnMerchandise15, discountOnMerchandise20, discountOnMerchandise25
 }
 

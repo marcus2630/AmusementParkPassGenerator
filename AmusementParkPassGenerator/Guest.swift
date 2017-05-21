@@ -9,7 +9,7 @@
 import Foundation
 
 enum GuestError: Error {
-    case InvalidData(data: String)
+    case InvalidData(data: String, type: GuestType)
 }
 
 enum GuestType {
@@ -23,11 +23,11 @@ class Guest: GuestEntrant {
     var type: GuestType
     var profile: Profile?
     
-    init(as type: GuestType, withInformation profile: Profile) throws {
+    init(as type: GuestType, withInformation profile: Profile?) throws {
         
         if type == .freeChild {
-            guard profile.birthday != nil else {
-                throw GuestError.InvalidData(data: "birthday")
+            guard profile?.birthday != nil else {
+                throw GuestError.InvalidData(data: "birthday", type: type)
             }
         }
         
@@ -47,19 +47,15 @@ class Guest: GuestEntrant {
         }
         
         if accessType == .discountAccess {
-            if let unwrapped = discountAccess {
-                for discount in unwrapped {
-                        if discount == access as? DiscountAccess   {
-                            print("Access granted!")
-                        } else {
-                            print("Access denied")
-                  }
-                
+            if let discountAccess = discountAccess {
+                for discount in discountAccess {
+                    if discount == access as? DiscountAccess {
+                        print("Access granted!")
+                    } else {
+                        print("Access denied!")
+                    }
                 }
-            } else {
-                print("Access denied")
             }
-
         }
         
         if accessType == .rideAccess {
@@ -91,7 +87,7 @@ extension Guest {
         switch type {
         case .classic,
              .freeChild:               discountAccess = nil
-        case .vip:                     discountAccess = [.discountOnFood(.ten), .discountOnMerchandise(.twentyFive)]
+        case .vip:                     discountAccess = [.discountOnFood10, .discountOnMerchandise20]
         }
         return discountAccess
     }

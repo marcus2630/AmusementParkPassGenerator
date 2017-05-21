@@ -9,7 +9,7 @@
 import Foundation
 
 enum EmployeeError: Error {
-    case InvalidData(data: String)
+    case InvalidData(data: String, type: EmployeeType)
 }
 
 enum EmployeeType {
@@ -24,29 +24,29 @@ class Employee: EmployeeEntrant {
     var profile: Profile
     
     init(as type: EmployeeType, withInformation profile: Profile) throws {
-        
+                
         guard profile.firstName != nil && profile.firstName != "" else {
-            throw EmployeeError.InvalidData(data: "first name")
+            throw EmployeeError.InvalidData(data: "first name", type: type)
         }
         
         guard profile.lastName != nil && profile.lastName != "" else {
-            throw EmployeeError.InvalidData(data: "last name")
+            throw EmployeeError.InvalidData(data: "last name", type: type)
         }
         
         guard profile.city != nil && profile.city != "" else {
-            throw EmployeeError.InvalidData(data: "city")
+            throw EmployeeError.InvalidData(data: "city", type: type)
         }
         
         guard profile.state != nil && profile.state != "" else {
-            throw EmployeeError.InvalidData(data: "state")
+            throw EmployeeError.InvalidData(data: "state", type: type)
         }
         
         guard profile.street != nil && profile.street != "" else {
-            throw EmployeeError.InvalidData(data: "street address")
+            throw EmployeeError.InvalidData(data: "street address", type: type)
         }
         
         guard profile.zip != nil else {
-            throw EmployeeError.InvalidData(data: "zip code")
+            throw EmployeeError.InvalidData(data: "zip code", type: type)
         }
         
         self.type = type
@@ -72,8 +72,8 @@ extension Employee {
         switch type {
         case .foodService,
              .maintenance,
-             .rideService:          discountAccess = [.discountOnFood(.fifteen), .discountOnMerchandise(.twentyFive)]
-        case .manager:              discountAccess = [.discountOnFood(.twentyFive), .discountOnMerchandise(.twentyFive)]
+             .rideService:          discountAccess = [.discountOnFood15, .discountOnMerchandise25]
+        case .manager:              discountAccess = [.discountOnFood25, .discountOnMerchandise25]
         }
         return discountAccess
     }
