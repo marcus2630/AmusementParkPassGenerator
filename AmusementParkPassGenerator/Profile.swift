@@ -8,11 +8,6 @@
 
 import Foundation
 
-
-enum ProfileError: Error {
-    case InvalidData(description: String)
-}
-
 struct Profile {
     var firstName: String?
     var lastName: String?
@@ -32,29 +27,17 @@ struct Profile {
         self.birthday = birthday
     }
     
-    init(freeChildWithBirthday: Date?, firstName: String?, lastName: String?, street: String?, city: String?, state: String?, zip: Int?) throws {
-
-        
-        self.init(withFirstName: firstName, lastName: lastName, street: street, city: city, state: state, zip: zip, birthday: freeChildWithBirthday)
+    init(freeChildWithBirthday birthday: Date, firstName: String?, lastName: String?, street: String?, city: String?, state: String?, zip: Int?) {
+        self.init(withFirstName: firstName, lastName: lastName, street: street, city: city, state: state, zip: zip, birthday: birthday)
         
     }
     
-    init(employeeWithFirstName: String?, lastName: String?, street: String?, city: String?, state: String?, zip: Int?) throws {
-        
-        guard let name = employeeWithFirstName else {
-            throw ProfileError.InvalidData(description: "First name is missing")
-        }
-        
-        guard let _ = lastName else {
-            throw ProfileError.InvalidData(description: "Last name is missing")
-        }
-        
-        guard let street = street, let city = city, let state = state, let zip = zip else {
-            throw ProfileError.InvalidData(description: "Location information is incomplete.")
-        }
-        self.init(withFirstName: name, lastName: lastName, street: street, city: city, state: state, zip: zip, birthday: nil)
-        
-            
+    init(employeeWithFirstName firstName: String?, lastName: String?, street: String, city: String, state: String, zip: Int) {
+        self.init(withFirstName: firstName, lastName: lastName, street: street, city: city, state: state, zip: zip, birthday: nil)
+    }
+    
+    init(freeChildWithBirthday birthday: Date?) {
+        self.birthday = birthday
     }
 }
 

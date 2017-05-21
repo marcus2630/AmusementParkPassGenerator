@@ -17,6 +17,8 @@
 		2C09AA711EC103BF007304DE /* Entrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09AA701EC103BF007304DE /* Entrant.swift */; };
 		2C09AA731EC23371007304DE /* Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09AA721EC23371007304DE /* Access.swift */; };
 		2C09AA751EC23381007304DE /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09AA741EC23381007304DE /* Profile.swift */; };
+		2CD5F5161EC8BE50000F230D /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5F5151EC8BE50000F230D /* Guest.swift */; };
+		2CD5F5181EC8BE96000F230D /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5F5171EC8BE96000F230D /* Employee.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		2C09AA701EC103BF007304DE /* Entrant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entrant.swift; sourceTree = "<group>"; };
 		2C09AA721EC23371007304DE /* Access.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Access.swift; sourceTree = "<group>"; };
 		2C09AA741EC23381007304DE /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		2CD5F5151EC8BE50000F230D /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
+		2CD5F5171EC8BE96000F230D /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,9 +109,11 @@
 			children = (
 				2C09AA421EC102AD007304DE /* AppDelegate.swift */,
 				2C09AA441EC102AD007304DE /* ViewController.swift */,
+				2C09AA721EC23371007304DE /* Access.swift */,
 				2C09AA741EC23381007304DE /* Profile.swift */,
 				2C09AA701EC103BF007304DE /* Entrant.swift */,
-				2C09AA721EC23371007304DE /* Access.swift */,
+				2CD5F5171EC8BE96000F230D /* Employee.swift */,
+				2CD5F5151EC8BE50000F230D /* Guest.swift */,
 				2C09AA461EC102AD007304DE /* Main.storyboard */,
 				2C09AA491EC102AD007304DE /* Assets.xcassets */,
 				2C09AA4B1EC102AD007304DE /* LaunchScreen.storyboard */,
@@ -273,6 +279,8 @@
 			files = (
 				2C09AA751EC23381007304DE /* Profile.swift in Sources */,
 				2C09AA711EC103BF007304DE /* Entrant.swift in Sources */,
+				2CD5F5161EC8BE50000F230D /* Guest.swift in Sources */,
+				2CD5F5181EC8BE96000F230D /* Employee.swift in Sources */,
 				2C09AA451EC102AD007304DE /* ViewController.swift in Sources */,
 				2C09AA731EC23371007304DE /* Access.swift in Sources */,
 				2C09AA431EC102AD007304DE /* AppDelegate.swift in Sources */,
