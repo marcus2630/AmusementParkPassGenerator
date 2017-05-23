@@ -10,11 +10,10 @@ import Foundation
 
 typealias percent = Int
 
-enum Access {
-    case areaAccess, rideAccess, discountAccess
+protocol Access {
 }
 
-enum AreaAccess {
+enum AreaAccess: Access {
     case amusement
     case kitchen
     case rideControl
@@ -22,7 +21,7 @@ enum AreaAccess {
     case office
 }
 
-enum RideAccess {
+enum RideAccess: Access {
     case accessAllRides
     case skipAllLines
 }
@@ -39,7 +38,7 @@ enum RideAccess {
 
 // Work around for now, individual cases
 
-enum DiscountAccess {
+enum DiscountAccess: Access {
     case discountOnFood10, discountOnFood15, discountOnFood20, discountOnFood25
     case discountOnMerchandise10, discountOnMerchandise15, discountOnMerchandise20, discountOnMerchandise25
 }

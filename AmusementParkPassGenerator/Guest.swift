@@ -35,37 +35,34 @@ class Guest: GuestEntrant {
         self.profile = profile
     }
     
-    func checkAccess(for access: Any, in accessType: Access) {
-        if accessType == .areaAccess {
-            for area in areaAccess {
-                if area == access as? AreaAccess {
-                    print("Access granted!")
+    func checkAccess(for access: Access) {
+        
+        if let access = access as? AreaAccess {
+            if areaAccess.contains(access) {
+                    print("Access granted \(access)!")
                 } else {
-                    print("Access denied!")
+                    print("Access denied \(access)!")
                 }
-            }
         }
         
-        if accessType == .discountAccess {
+        
+        if let access = access as? DiscountAccess {
+            
             if let discountAccess = discountAccess {
-                for discount in discountAccess {
-                    if discount == access as? DiscountAccess {
-                        print("Access granted!")
-                    } else {
-                        print("Access denied!")
-                    }
+                if discountAccess.contains(access) {
+                    print("Access granted for \(access)!")
+                } else {
+                    print("Access denied \(access)!")
                 }
             }
         }
         
-        if accessType == .rideAccess {
-            for ride in rideAccess {
-                if ride == access as? RideAccess {
-                    print("Access granted!")
+        if let access = access as? RideAccess {
+            if rideAccess.contains(access) {
+                    print("Access granted \(access)!")
                 } else {
-                    print("Access denied")
+                    print("Access denied \(access)!")
                 }
-            }
         }
     }
 }

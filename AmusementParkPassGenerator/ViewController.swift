@@ -12,20 +12,37 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var freeChild: Guest
-        var VIP: Guest
-        var classic: Guest
+
         
         do {
-            freeChild   =  try Guest(as: .freeChild, withInformation: Profile(freeChildWithBirthday: nil))
-            VIP         =  try Guest(as: .vip, withInformation: nil)
-            classic     =  try Guest(as: .classic, withInformation: nil)
+            let freeChild   =  try Guest(as: .freeChild, withInformation: Profile(freeChildWithBirthday: nil))
         } catch GuestError.InvalidData(let data, let type) {
             print("Error, profile of type \(type) was missing \(data)")
         } catch {
             // no other erros
         }
+    
+        do {
+            let VIP         =  try Guest(as: .vip, withInformation: nil)
+            VIP.checkAccess(for: RideAccess.accessAllRides)
+            
+        } catch GuestError.InvalidData(let data, let type) {
+            print("Error, profile of type \(type) was missing \(data)")
+        } catch {
+            // no other erros
+        }
+        
+        do {
+            let classic     =  try Guest(as: .classic, withInformation: nil)
+            classic.checkAccess(for: AreaAccess.kitchen)
+        } catch GuestError.InvalidData(let data, let type) {
+            print("Error, profile of type \(type) was missing \(data)")
+        } catch {
+            // no other erros
+        }
+        
+            
+        
     
         
         let defaultProfile = Profile(employeeWithFirstName: "Name", lastName: "Lastname", street: "Street", city: "City", state: "state", zip: 1111)
@@ -41,7 +58,7 @@ class ViewController: UIViewController {
             // no other erros
         }
         
-        freeChild.checkAccess(for: RideAccess.skipAllLines, in: .rideAccess)
+        
         
     }
 
