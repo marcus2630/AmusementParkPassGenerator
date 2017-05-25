@@ -25,6 +25,7 @@ class Guest: GuestEntrant {
     
     init(as type: GuestType, withInformation profile: Profile?) throws {
         
+        // If free child, guard that birthday is not nil
         if type == .freeChild {
             guard profile?.birthday != nil else {
                 throw GuestError.InvalidData(data: "birthday", type: type)
@@ -37,17 +38,17 @@ class Guest: GuestEntrant {
     
     func checkAccess(for access: Access) {
         
+        // If access is of type AreaAccess and areaAccess contains access
         if let access = access as? AreaAccess {
             if areaAccess.contains(access) {
-                    print("Access granted \(access)!")
-                } else {
-                    print("Access denied \(access)!")
-                }
+                print("Access granted \(access)!")
+            } else {
+                print("Access denied \(access)!")
+            }
         }
         
-        
+        // If access is of type DiscountAccess and discountAccess contains access
         if let access = access as? DiscountAccess {
-            
             if let discountAccess = discountAccess {
                 if discountAccess.contains(access) {
                     print("Access granted for \(access)!")
@@ -57,36 +58,40 @@ class Guest: GuestEntrant {
             }
         }
         
+        // If access is of type RideAccess and rideAccess contains access
         if let access = access as? RideAccess {
             if rideAccess.contains(access) {
-                    print("Access granted \(access)!")
-                } else {
-                    print("Access denied \(access)!")
-                }
+                print("Access granted \(access)!")
+            } else {
+                print("Access denied \(access)!")
+            }
         }
     }
+    
 }
 
 extension Guest {
+    
+    // Compute accesses according to type chosen for guest
     var areaAccess: [AreaAccess] {
-        var areaAccess: [AreaAccess]
+        var areas: [AreaAccess]
         
         switch type {
         case .classic,
              .vip,
-             .freeChild:              areaAccess = [.amusement]
+             .freeChild:              areas = [.amusement]
         }
-        return areaAccess
+        return areas
     }
     
     var discountAccess: [DiscountAccess]? {
-        var discountAccess: [DiscountAccess]?
+        var discounts: [DiscountAccess]?
         switch type {
         case .classic,
-             .freeChild:               discountAccess = nil
-        case .vip:                     discountAccess = [.discountOnFood10, .discountOnMerchandise20]
+             .freeChild:               discounts = nil
+        case .vip:                     discounts = [.discountOnFood10, .discountOnMerchandise20]
         }
-        return discountAccess
+        return discounts
     }
     
     var rideAccess: [RideAccess] {

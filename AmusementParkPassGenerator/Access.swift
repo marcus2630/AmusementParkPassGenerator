@@ -10,8 +10,9 @@ import Foundation
 
 typealias percent = Int
 
-protocol Access {
-}
+
+// Access overall type
+protocol Access {}
 
 enum AreaAccess: Access {
     case amusement
@@ -25,10 +26,6 @@ enum RideAccess: Access {
     case accessAllRides
     case skipAllLines
 }
-
-
-
-
 
 // Having associated values on enum when casting to it gives error: Cannot convert type foo to argument type '_NilOptionalComparisonType'
 //    enum DiscountAccess {
