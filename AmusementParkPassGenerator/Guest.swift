@@ -8,15 +8,7 @@
 
 import Foundation
 
-enum GuestError: Error {
-    case InvalidData(data: String, type: GuestType)
-}
 
-enum GuestType {
-    case classic
-    case vip
-    case freeChild
-}
 
 class Guest: GuestEntrant {
     
@@ -28,7 +20,7 @@ class Guest: GuestEntrant {
         // If free child, guard that birthday is not nil
         if type == .freeChild {
             guard profile?.birthday != nil else {
-                throw GuestError.InvalidData(data: "birthday", type: type)
+                throw ProfileError.InvalidData(data: "birthday", type: type)
             }
         }
         

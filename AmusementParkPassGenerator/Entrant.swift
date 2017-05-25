@@ -28,5 +28,19 @@ protocol GuestEntrant: Entrant {
 }
 
 
+protocol EntrantType {}
+
+enum EmployeeType: EntrantType {
+    case foodService
+    case rideService
+    case maintenance
+    case manager
+}
+
+enum GuestType: EntrantType {
+    case classic
+    case vip
+    case freeChild
+}
 
 

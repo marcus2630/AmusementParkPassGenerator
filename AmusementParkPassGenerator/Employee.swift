@@ -8,17 +8,6 @@
 
 import Foundation
 
-enum EmployeeError: Error {
-    case InvalidData(data: String, type: EmployeeType)
-}
-
-enum EmployeeType {
-    case foodService
-    case rideService
-    case maintenance
-    case manager
-}
-
 class Employee: EmployeeEntrant {
     var type: EmployeeType
     var profile: Profile
@@ -27,27 +16,27 @@ class Employee: EmployeeEntrant {
         
         // Guard that all profile requirements are filled
         guard profile.firstName != nil && profile.firstName != "" else {
-            throw EmployeeError.InvalidData(data: "first name", type: type)
+            throw ProfileError.InvalidData(data: "first name", type: type)
         }
         
         guard profile.lastName != nil && profile.lastName != "" else {
-            throw EmployeeError.InvalidData(data: "last name", type: type)
+            throw ProfileError.InvalidData(data: "last name", type: type)
         }
         
         guard profile.city != nil && profile.city != "" else {
-            throw EmployeeError.InvalidData(data: "city", type: type)
+            throw ProfileError.InvalidData(data: "city", type: type)
         }
         
         guard profile.state != nil && profile.state != "" else {
-            throw EmployeeError.InvalidData(data: "state", type: type)
+            throw ProfileError.InvalidData(data: "state", type: type)
         }
         
         guard profile.street != nil && profile.street != "" else {
-            throw EmployeeError.InvalidData(data: "street address", type: type)
+            throw ProfileError.InvalidData(data: "street address", type: type)
         }
         
         guard profile.zip != nil else {
-            throw EmployeeError.InvalidData(data: "zip code", type: type)
+            throw ProfileError.InvalidData(data: "zip code", type: type)
         }
         
         self.type = type

@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum ProfileError: Error {
+    case InvalidData(data: String, type: EntrantType)
+}
+
+
 struct Profile {
     var firstName: String?
     var lastName: String?
