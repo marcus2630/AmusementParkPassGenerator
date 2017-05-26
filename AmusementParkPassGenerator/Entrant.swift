@@ -12,35 +12,20 @@ import Foundation
 protocol Entrant {
     var areaAccess: [AreaAccess] { get }
     var rideAccess: [RideAccess] { get }
+    var type: EntrantType { get set }
     func checkAccess(for access: Access)
 }
 
-protocol EmployeeEntrant: Entrant {
-    var type: EmployeeType { get }
-    var discountAccess: [DiscountAccess] { get }
-    var profile: Profile { get set }
-}
-
-protocol GuestEntrant: Entrant {
-    var type: GuestType { get }
-    var discountAccess: [DiscountAccess]? { get }
-    var profile: Profile? { get set }
-}
 
 
-protocol EntrantType {}
 
-enum EmployeeType: EntrantType {
+enum EntrantType {
     case foodService
     case rideService
     case maintenance
     case manager
-}
-
-enum GuestType: EntrantType {
     case classic
     case vip
     case freeChild
 }
-
 

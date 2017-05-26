@@ -10,16 +10,16 @@ import Foundation
 
 
 
-class Guest: GuestEntrant {
+class Guest: Entrant {
     
-    var type: GuestType
+    var type: EntrantType
     var profile: Profile?
     
-    init(as type: GuestType, withInformation profile: Profile?) throws {
+    init(as type: EntrantType, withInformation profile: Profile) throws {
         
         // If free child, guard that birthday is not nil
         if type == .freeChild {
-            guard profile?.birthday != nil else {
+            guard profile.birthday != nil else {
                 throw ProfileError.InvalidData(data: "birthday", type: type)
             }
         }
@@ -72,6 +72,10 @@ extension Guest {
         case .classic,
              .vip,
              .freeChild:              areas = [.amusement]
+        case .foodService:          areas = [.amusement, .kitchen]
+        case .rideService:          areas = [.amusement, .rideControl]
+        case .maintenance:          areas = [.amusement, .kitchen, .maintenance, .rideControl]
+        case .manager:              areas = [.amusement, .kitchen, .maintenance, .office, .rideControl]
         }
         return areas
     }
@@ -82,6 +86,10 @@ extension Guest {
         case .classic,
              .freeChild:               discounts = nil
         case .vip:                     discounts = [.discountOnFood10, .discountOnMerchandise20]
+        case .foodService,
+             .maintenance,
+             .rideService:          discounts = [.discountOnFood15, .discountOnMerchandise25]
+        case .manager:              discounts = [.discountOnFood25, .discountOnMerchandise25]
         }
         return discounts
     }
@@ -93,6 +101,10 @@ extension Guest {
         case    .classic,
                 .freeChild:         rides = [.accessAllRides]
         case    .vip:               rides = [.accessAllRides, .skipAllLines]
+        case .foodService,
+             .maintenance,
+             .rideService,
+             .manager:          rides = [.accessAllRides]
         }
         return rides
     }

@@ -8,11 +8,9 @@
 
 import Foundation
 
-class Employee: EmployeeEntrant {
-    var type: EmployeeType
-    var profile: Profile
+class Employee: Guest {
     
-    init(as type: EmployeeType, withInformation profile: Profile) throws {
+    override init(as type: EntrantType, withInformation profile: Profile) throws {
         
         // Guard that all profile requirements are filled
         guard profile.firstName != nil && profile.firstName != "" else {
@@ -39,11 +37,16 @@ class Employee: EmployeeEntrant {
             throw ProfileError.InvalidData(data: "zip code", type: type)
         }
         
-        self.type = type
-        self.profile = profile
+        
+        
+        super.init(as: type) {
+            self.type = type
+            self.profile = profile
+        }
+        
     }
     
-    func checkAccess(for access: Access) {
+    override func checkAccess(for access: Access) {
         
         // If access is of type AreaAccess and areaAccess contains access
         if let access = access as? AreaAccess {
@@ -56,11 +59,13 @@ class Employee: EmployeeEntrant {
         
         // If access is of type DiscountAccess and discountAccess contains access
         if let access = access as? DiscountAccess {
+            if let discountAccess = discountAccess {
                 if discountAccess.contains(access) {
                     print("Access granted for \(access)!")
                 } else {
                     print("Access denied \(access)!")
                 }
+            }
         }
         
         // If access is of type RideAccess and rideAccess contains access
@@ -74,43 +79,4 @@ class Employee: EmployeeEntrant {
     }
 }
 
-extension Employee {
-    
-    // Compute accesses according to chosen employee type
-    var areaAccess: [AreaAccess] {
-        var areas: [AreaAccess]
-        
-        switch type {
-        case .foodService:          areas = [.amusement, .kitchen]
-        case .rideService:          areas = [.amusement, .rideControl]
-        case .maintenance:          areas = [.amusement, .kitchen, .maintenance, .rideControl]
-        case .manager:              areas = [.amusement, .kitchen, .maintenance, .office, .rideControl]
-        }
-        return areas
-    }
-    
-    var discountAccess: [DiscountAccess] {
-        var discounts: [DiscountAccess]
-        switch type {
-        case .foodService,
-             .maintenance,
-             .rideService:          discounts = [.discountOnFood15, .discountOnMerchandise25]
-        case .manager:              discounts = [.discountOnFood25, .discountOnMerchandise25]
-        }
-        return discounts
-    }
-    
-    var rideAccess: [RideAccess] {
-        var rides: [RideAccess]
-        
-        switch type {
-        case .foodService,
-             .maintenance,
-             .rideService,
-             .manager:          rides = [.accessAllRides]
-        }
-        return rides
-    }
-    
-    
-}
+
