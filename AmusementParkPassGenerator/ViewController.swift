@@ -9,26 +9,34 @@
 import UIKit
 
 
-protocol Navigation {}
-enum MainNavigation: Navigation {
+enum MainNavigation {
     case guest, employee, manager, vendor
 }
 
-enum GuestNavigation: Navigation {
-    case child, adult, senior, vip
+enum SubNavigation {
+        // Guest
+        case child, adult, senior, vip
+    
+        // Employee
+        case foodService, rideService, maintenance
 }
 
-enum EmployeeNavigation: Navigation {
-    case foodService, rideService, maintenance
+class Navigation {
+    var main: MainNavigation
+    var sub: SubNavigation
+    
+    init(mainNavigation: MainNavigation, subNavigation: SubNavigation) {
+        self.main = mainNavigation
+        self.sub = subNavigation
+    }
 }
 
+let navigation = Navigation(mainNavigation: .guest, subNavigation: .child)
 
-var mainNavigation: MainNavigation = .guest
-var guestNavigation: GuestNavigation = .child
-var employeeNavigation: EmployeeNavigation = .foodService
 
 class ViewController: UIViewController {
     
+    // Outlets for the sub navigations for show/hide functionality
     @IBOutlet weak var guestSubMenu: UIStackView!
     @IBOutlet weak var employeeSubMenu: UIStackView!
     
@@ -49,42 +57,72 @@ class ViewController: UIViewController {
     @IBOutlet weak var rideServiceButton: UIButton!
     @IBOutlet weak var maintenanceButton: UIButton!
     
+    // Form outlets
+    @IBOutlet weak var dateOfBirth: UITextField!
+    @IBOutlet weak var ssn: UITextField!
+    @IBOutlet weak var project: UITextField!
+    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var lastName: UITextField!
+    @IBOutlet weak var company: UITextField!
+    @IBOutlet weak var streetAddress: UITextField!
+    @IBOutlet weak var city: UITextField!
+    @IBOutlet weak var state: UITextField!
+    @IBOutlet weak var zipCode: UITextField!
+    
     
     @IBAction func tapNavigationButton(_ sender: Any) {
+        
+        
         guard let button = sender as? UIButton else { return }
         
         switch button.tag {
         
         // Main menu
-        case 1: mainNavigation = .guest
-        case 2: mainNavigation = .employee
-        case 3: mainNavigation = .manager
-        case 4: mainNavigation = .vendor
+        case 1:
+            navigation.main = .guest
+            highlightRequiredInputFields()
+            
+        case 2:
+            navigation.main = .employee
+            highlightRequiredInputFields()
+            
+        case 3: navigation.main = .manager
+        case 4: navigation.main = .vendor
             
         // Guest menu
-        case 5: guestNavigation = .child
-        case 6: guestNavigation = .adult
-        case 7: guestNavigation = .senior
-        case 8: guestNavigation = .vip
+        case 5:
+            navigation.sub = .child
+            highlightRequiredInputFields()
+            
+        case 6:
+            navigation.sub = .adult
+            highlightRequiredInputFields()
+            
+        case 7:
+            navigation.sub = .senior
+            highlightRequiredInputFields()
+            
+        case 8:
+            navigation.sub = .vip
+            highlightRequiredInputFields()
             
         // Employee menu
-        case 9: employeeNavigation = .foodService
-        case 10: employeeNavigation = .rideService
-        case 11: employeeNavigation = .maintenance
+        case 9: navigation.sub = .foodService
+        case 10: navigation.sub = .rideService
+        case 11: navigation.sub = .maintenance
             
         // default
-        default: mainNavigation = .guest
+        default: navigation.main = .guest
         }
         
         layoutSubNavigation()
         updateButtonStyles()
-        highlightRequiredInputFields()
     }
     
     
     func layoutSubNavigation() {
         
-        switch mainNavigation {
+        switch navigation.main {
             
         case .guest :
             guestSubMenu.isHidden = false
@@ -108,6 +146,39 @@ class ViewController: UIViewController {
     
     func highlightRequiredInputFields() {
         
+        dateOfBirth.backgroundColor = UIColor.clear
+        ssn.backgroundColor = UIColor.clear
+        firstName.backgroundColor = UIColor.clear
+        lastName.backgroundColor = UIColor.clear
+        company.backgroundColor = UIColor.clear
+        project.backgroundColor = UIColor.clear
+        streetAddress.backgroundColor = UIColor.clear
+        city.backgroundColor = UIColor.clear
+        state.backgroundColor = UIColor.clear
+        zipCode.backgroundColor = UIColor.clear
+        
+        
+        if navigation.main == .employee {
+            dateOfBirth.backgroundColor = UIColor.white
+            firstName.backgroundColor = UIColor.white
+            lastName.backgroundColor = UIColor.white
+            streetAddress.backgroundColor = UIColor.white
+            city.backgroundColor = UIColor.white
+            state.backgroundColor = UIColor.white
+            zipCode.backgroundColor = UIColor.white
+        }
+        
+        switch navigation.sub {
+        
+        case .child:
+            dateOfBirth.backgroundColor = UIColor.white
+            
+        case .senior:
+            dateOfBirth.backgroundColor = UIColor.white
+            firstName.backgroundColor = UIColor.white
+            lastName.backgroundColor = UIColor.white
+        default: break
+        }
     }
     
     func highlight(button: UIButton, size: CGFloat) {
@@ -124,25 +195,20 @@ class ViewController: UIViewController {
         }
         
         // Check for buttons which should be highlighted
-        switch mainNavigation {
+        switch navigation.main {
         case .guest :       highlight(button: guestButton, size: 21.0)
-        
-            switch guestNavigation {
-            case .child:    highlight(button: childButton, size: 16.0)
-            case .adult:    highlight(button: adultButton, size: 16.0)
-            case .senior:   highlight(button: seniorButton, size: 16.0)
-            case .vip:      highlight(button: vipButton, size: 16.0)
-            }
-            
         case .employee :    highlight(button: employeeButton, size: 19.0)
-            
-            switch employeeNavigation {
-            case .foodService:    highlight(button: foodServiceButton, size: 16.0)
-            case .rideService:    highlight(button: rideServiceButton, size: 16.0)
-            case .maintenance:   highlight(button: maintenanceButton, size: 16.0)
-            }
         case .manager :     highlight(button: managerButton, size: 19.0)
         case .vendor :      highlight(button: vendorButton, size: 19.0)
+        }
+        switch navigation.sub {
+        case .child:    highlight(button: childButton, size: 16.0)
+        case .adult:    highlight(button: adultButton, size: 16.0)
+        case .senior:   highlight(button: seniorButton, size: 16.0)
+        case .vip:      highlight(button: vipButton, size: 16.0)
+        case .foodService:    highlight(button: foodServiceButton, size: 16.0)
+        case .rideService:    highlight(button: rideServiceButton, size: 16.0)
+        case .maintenance:   highlight(button: maintenanceButton, size: 16.0)
         }
     }
 
@@ -151,6 +217,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let myRect = CGRect(x: 10, y: 0, width: 30, height: 30)
+        dateOfBirth.textRect(forBounds: myRect)
+        dateOfBirth.placeholderRect(forBounds: myRect)
         
         navigationButtons = [ // Main nav
                              guestButton,
@@ -172,6 +242,7 @@ class ViewController: UIViewController {
         
         layoutSubNavigation()
         updateButtonStyles()
+        highlightRequiredInputFields()
         
         do {
             
