@@ -78,33 +78,18 @@ class ViewController: UIViewController {
         switch button.tag {
         
         // Main menu
-        case 1:
-            navigation.main = .guest
-            highlightRequiredInputFields()
+        case 1: navigation.main = .guest
             
-        case 2:
-            navigation.main = .employee
-            highlightRequiredInputFields()
+        case 2: navigation.main = .employee
             
         case 3: navigation.main = .manager
         case 4: navigation.main = .vendor
             
         // Guest menu
-        case 5:
-            navigation.sub = .child
-            highlightRequiredInputFields()
-            
-        case 6:
-            navigation.sub = .adult
-            highlightRequiredInputFields()
-            
-        case 7:
-            navigation.sub = .senior
-            highlightRequiredInputFields()
-            
-        case 8:
-            navigation.sub = .vip
-            highlightRequiredInputFields()
+        case 5: navigation.sub = .child
+        case 6: navigation.sub = .adult
+        case 7: navigation.sub = .senior
+        case 8: navigation.sub = .vip
             
         // Employee menu
         case 9: navigation.sub = .foodService
@@ -115,6 +100,7 @@ class ViewController: UIViewController {
         default: navigation.main = .guest
         }
         
+        highlightRequiredInputFields()
         layoutSubNavigation()
         updateButtonStyles()
     }
@@ -196,7 +182,7 @@ class ViewController: UIViewController {
         
         // Check for buttons which should be highlighted
         switch navigation.main {
-        case .guest :       highlight(button: guestButton, size: 21.0)
+        case .guest :       highlight(button: guestButton, size: 19.0)
         case .employee :    highlight(button: employeeButton, size: 19.0)
         case .manager :     highlight(button: managerButton, size: 19.0)
         case .vendor :      highlight(button: vendorButton, size: 19.0)
