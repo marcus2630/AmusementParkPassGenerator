@@ -9,6 +9,8 @@
 import UIKit
 
 
+/* NAVIGATION
+-----------------------------*/
 enum MainNavigation {
     case guest, employee, manager, vendor
 }
@@ -21,6 +23,7 @@ enum SubNavigation {
         case foodService, rideService, maintenance
 }
 
+// Navigation Model
 class Navigation {
     var main: MainNavigation
     var sub: SubNavigation
@@ -31,6 +34,7 @@ class Navigation {
     }
 }
 
+// Create instance
 let navigation = Navigation(mainNavigation: .guest, subNavigation: .child)
 
 
@@ -98,6 +102,7 @@ class ViewController: UIViewController {
             
         // default
         default: navigation.main = .guest
+            navigation.sub = .child
         }
         
         highlightRequiredInputFields()
@@ -230,7 +235,14 @@ class ViewController: UIViewController {
         updateButtonStyles()
         highlightRequiredInputFields()
         
+        if navigation.sub == .adult {
+            do {
+                let profile = Guest(as: navigation.sub as GuestType, withInformation: nil)
+            }
+        }
+        
         do {
+            
             
             //-- Create classic guest
             // let classicGuest = try Guest(as: .classic, withInformation: nil)
