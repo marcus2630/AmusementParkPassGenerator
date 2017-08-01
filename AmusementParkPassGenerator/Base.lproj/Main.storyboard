@@ -552,6 +552,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
+                                            <action selector="generatePassAndSegue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e1X-3Z-ZHh"/>
                                             <segue destination="fNM-VH-D2s" kind="presentation" id="oOQ-p0-E1d"/>
                                         </connections>
                                     </button>

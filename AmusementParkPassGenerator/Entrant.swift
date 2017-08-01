@@ -16,31 +16,39 @@ protocol Entrant {
 }
 
 protocol EmployeeEntrant: Entrant {
-    var type: EmployeeType { get }
+    var type: EntrantType { get }
     var discountAccess: [DiscountAccess] { get }
     var profile: Profile { get set }
 }
 
 protocol GuestEntrant: Entrant {
-    var type: GuestType { get }
+    var type: EntrantType { get }
     var discountAccess: [DiscountAccess]? { get }
     var profile: Profile? { get set }
 }
 
 
-protocol EntrantType {}
+//protocol EntrantType {}
+//
+//enum EmployeeType: EntrantType {
+//    case foodService
+//    case rideService
+//    case maintenance
+//    case manager
+//}
+//
+//enum GuestType: EntrantType {
+//    case classic
+//    case vip
+//    case freeChild
+//}
 
-enum EmployeeType: EntrantType {
-    case foodService
-    case rideService
-    case maintenance
-    case manager
-}
-
-enum GuestType: EntrantType {
-    case classic
-    case vip
-    case freeChild
+enum EntrantType {
+    // Employee
+    case foodService, rideService, maintenance, manager
+    
+    // Guest
+    case classic, vip, freeChild, senior
 }
 
 

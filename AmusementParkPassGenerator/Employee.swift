@@ -9,10 +9,10 @@
 import Foundation
 
 class Employee: EmployeeEntrant {
-    var type: EmployeeType
+    var type: EntrantType
     var profile: Profile
     
-    init(as type: EmployeeType, withInformation profile: Profile) throws {
+    init(as type: EntrantType, withInformation profile: Profile) throws {
         
         // Guard that all profile requirements are filled
         guard profile.firstName != nil && profile.firstName != "" else {
@@ -85,6 +85,7 @@ extension Employee {
         case .rideService:          areas = [.amusement, .rideControl]
         case .maintenance:          areas = [.amusement, .kitchen, .maintenance, .rideControl]
         case .manager:              areas = [.amusement, .kitchen, .maintenance, .office, .rideControl]
+        default: areas = []
         }
         return areas
     }
@@ -96,6 +97,7 @@ extension Employee {
              .maintenance,
              .rideService:          discounts = [.discountOnFood15, .discountOnMerchandise25]
         case .manager:              discounts = [.discountOnFood25, .discountOnMerchandise25]
+        default: discounts = []
         }
         return discounts
     }
@@ -108,6 +110,7 @@ extension Employee {
              .maintenance,
              .rideService,
              .manager:          rides = [.accessAllRides]
+        default: rides = []
         }
         return rides
     }

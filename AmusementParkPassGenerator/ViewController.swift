@@ -26,16 +26,16 @@ enum SubNavigation {
 // Navigation Model
 class Navigation {
     var main: MainNavigation
-    var sub: SubNavigation
+    var sub: EntrantType
     
-    init(mainNavigation: MainNavigation, subNavigation: SubNavigation) {
+    init(mainNavigation: MainNavigation, subNavigation: EntrantType) {
         self.main = mainNavigation
         self.sub = subNavigation
     }
 }
 
 // Create instance
-let navigation = Navigation(mainNavigation: .guest, subNavigation: .child)
+let navigation = Navigation(mainNavigation: .guest, subNavigation: .freeChild)
 
 
 class ViewController: UIViewController {
@@ -73,6 +73,25 @@ class ViewController: UIViewController {
     @IBOutlet weak var state: UITextField!
     @IBOutlet weak var zipCode: UITextField!
     
+    @IBAction func generatePassAndSegue(_ sender: Any) {
+            do {
+                var zipCodeAsInt: Int? = nil
+                
+                if let zipCodeText = zipCode.text {
+                    zipCodeAsInt = Int(zipCodeText)
+                }
+                let profile = Profile(employeeWithFirstName: firstName.text, lastName: lastName.text, street: streetAddress.text, city: city.text, state: state.text, zip: zipCodeAsInt)
+                let entrant = try Guest(as: navigation.sub, withInformation: profile)
+                
+                print("\(String(describing: entrant.profile?.firstName)) was created successfully")
+                
+            } catch ProfileError.InvalidData(let data, let type) {
+                print("Error, \(type) was missing \(data)")
+            } catch {
+                print("Other error occured")
+            }
+
+    }
     
     @IBAction func tapNavigationButton(_ sender: Any) {
         
@@ -90,8 +109,8 @@ class ViewController: UIViewController {
         case 4: navigation.main = .vendor
             
         // Guest menu
-        case 5: navigation.sub = .child
-        case 6: navigation.sub = .adult
+        case 5: navigation.sub = .freeChild
+        case 6: navigation.sub = .classic
         case 7: navigation.sub = .senior
         case 8: navigation.sub = .vip
             
@@ -102,7 +121,7 @@ class ViewController: UIViewController {
             
         // default
         default: navigation.main = .guest
-            navigation.sub = .child
+            navigation.sub = .freeChild
         }
         
         highlightRequiredInputFields()
@@ -161,7 +180,7 @@ class ViewController: UIViewController {
         
         switch navigation.sub {
         
-        case .child:
+        case .freeChild:
             dateOfBirth.backgroundColor = UIColor.white
             
         case .senior:
@@ -189,16 +208,17 @@ class ViewController: UIViewController {
         switch navigation.main {
         case .guest :       highlight(button: guestButton, size: 19.0)
         case .employee :    highlight(button: employeeButton, size: 19.0)
-        case .manager :     highlight(button: managerButton, size: 19.0)
         case .vendor :      highlight(button: vendorButton, size: 19.0)
+        case .manager :     highlight(button: managerButton, size: 19.0)
         }
         switch navigation.sub {
-        case .child:    highlight(button: childButton, size: 16.0)
-        case .adult:    highlight(button: adultButton, size: 16.0)
+        case .freeChild:    highlight(button: childButton, size: 16.0)
+        case .classic:    highlight(button: adultButton, size: 16.0)
         case .senior:   highlight(button: seniorButton, size: 16.0)
         case .vip:      highlight(button: vipButton, size: 16.0)
         case .foodService:    highlight(button: foodServiceButton, size: 16.0)
         case .rideService:    highlight(button: rideServiceButton, size: 16.0)
+        case .manager :     highlight(button: managerButton, size: 19.0)
         case .maintenance:   highlight(button: maintenanceButton, size: 16.0)
         }
     }
@@ -235,11 +255,8 @@ class ViewController: UIViewController {
         updateButtonStyles()
         highlightRequiredInputFields()
         
-        if navigation.sub == .adult {
-            do {
-                let profile = Guest(as: navigation.sub as GuestType, withInformation: nil)
-            }
-        }
+
+        
         
         do {
             

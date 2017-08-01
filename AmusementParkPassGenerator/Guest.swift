@@ -12,10 +12,10 @@ import Foundation
 
 class Guest: GuestEntrant {
     
-    var type: GuestType
+    var type: EntrantType
     var profile: Profile?
     
-    init(as type: GuestType, withInformation profile: Profile?) throws {
+    init(as type: EntrantType, withInformation profile: Profile?) throws {
         
         // If free child, guard that birthday is not nil
         if type == .freeChild {
@@ -71,7 +71,9 @@ extension Guest {
         switch type {
         case .classic,
              .vip,
+             .senior,
              .freeChild:              areas = [.amusement]
+        default: areas = []
         }
         return areas
     }
@@ -82,6 +84,8 @@ extension Guest {
         case .classic,
              .freeChild:               discounts = nil
         case .vip:                     discounts = [.discountOnFood10, .discountOnMerchandise20]
+        case .senior:                  discounts = [.discountOnFood10, .discountOnMerchandise10]
+        default: discounts = []
         }
         return discounts
     }
@@ -92,7 +96,8 @@ extension Guest {
         switch type {
         case    .classic,
                 .freeChild:         rides = [.accessAllRides]
-        case    .vip:               rides = [.accessAllRides, .skipAllLines]
+        case    .vip, .senior:      rides = [.accessAllRides, .skipAllLines]
+        default: rides = []
         }
         return rides
     }
