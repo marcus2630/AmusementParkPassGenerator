@@ -93,6 +93,24 @@ class ViewController: UIViewController {
 
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Prepare for GameFinishedVC transition
+        if segue.identifier == "GeneratePass" {
+            if let destination = segue.destination as? PassViewController {
+                    
+                    // Set GameFinishedViewControllers score var to this VCs score var
+                    destination.score = score
+                    
+                    // Initialize delegate on this VC otherwise it wont work
+                    destination.delegate = self
+                }
+                
+            }
+        }
+    
+    
     @IBAction func tapNavigationButton(_ sender: Any) {
         
         

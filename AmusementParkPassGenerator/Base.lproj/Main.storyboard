@@ -553,7 +553,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="generatePassAndSegue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e1X-3Z-ZHh"/>
-                                            <segue destination="fNM-VH-D2s" kind="presentation" id="oOQ-p0-E1d"/>
+                                            <segue destination="fNM-VH-D2s" kind="presentation" identifier="GeneratePass" id="oOQ-p0-E1d"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQU-TW-3lW">
@@ -864,12 +864,6 @@
                             <constraint firstItem="yXX-nD-ohN" firstAttribute="trailing" secondItem="PiI-ka-WDg" secondAttribute="trailingMargin" id="pya-EK-y2H"/>
                             <constraint firstItem="5ZF-r7-x69" firstAttribute="leading" secondItem="PiI-ka-WDg" secondAttribute="leading" id="yKL-Pp-7jP"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="4"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
                         <outlet property="resultLabel" destination="MHK-KI-tLK" id="Udn-iI-Kav"/>
@@ -877,7 +871,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BMg-ja-k2H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="818.75" y="140.625"/>
+            <point key="canvasLocation" x="855" y="141"/>
         </scene>
     </scenes>
     <resources>

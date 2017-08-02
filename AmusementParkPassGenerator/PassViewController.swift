@@ -11,6 +11,7 @@ import UIKit
 class PassViewController: UIViewController {
     
     @IBOutlet weak var resultLabel: UILabel!
+    
 
     @IBAction func createNewPass(_ sender: Any) {
         dismiss(animated: true)
