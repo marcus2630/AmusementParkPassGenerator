@@ -38,7 +38,7 @@ class Navigation {
 let navigation = Navigation(mainNavigation: .guest, subNavigation: .freeChild)
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, PassGeneratedDelegate {
     
     // Outlets for the sub navigations for show/hide functionality
     @IBOutlet weak var guestSubMenu: UIStackView!
@@ -73,7 +73,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var state: UITextField!
     @IBOutlet weak var zipCode: UITextField!
     
+    
+    // Declared entrant to avoid scope issues
+    var entrant: Guest? = nil
+    
     @IBAction func generatePassAndSegue(_ sender: Any) {
+        
+        
             do {
                 var zipCodeAsInt: Int? = nil
                 
@@ -101,8 +107,12 @@ class ViewController: UIViewController {
             if let destination = segue.destination as? PassViewController {
                     
                     // Set GameFinishedViewControllers score var to this VCs score var
-                    destination.score = score
-                    
+                if let entrant = entrant {
+                    destination.entrant = entrant
+                } else {
+                    print("entrant empty")
+                }
+                
                     // Initialize delegate on this VC otherwise it wont work
                     destination.delegate = self
                 }

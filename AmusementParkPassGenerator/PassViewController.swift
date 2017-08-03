@@ -8,15 +8,28 @@
 
 import UIKit
 
+protocol PassGeneratedDelegate {}
+
 class PassViewController: UIViewController {
+    
+    
+    @IBOutlet weak var entrantNameLabel: UILabel!
+    @IBOutlet weak var entrantTypeLabel: UILabel!
+    @IBOutlet weak var entrantPermissionsLabel: UILabel!
     
     @IBOutlet weak var resultLabel: UILabel!
     
+    
+    
+    var delegate: PassGeneratedDelegate! = nil
+    
+    var entrant: Guest? = nil
 
     @IBAction func createNewPass(_ sender: Any) {
         dismiss(animated: true)
     }
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -25,6 +38,9 @@ class PassViewController: UIViewController {
         resultLabel.layer.cornerRadius = 4
         resultLabel.clipsToBounds = true
         resultLabel.layer.borderWidth = 1
+        1
+        entrantNameLabel.text = entrant.profile?.firstName
+        
     }
 
     override func didReceiveMemoryWarning() {
