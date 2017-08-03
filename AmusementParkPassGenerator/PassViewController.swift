@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol PassGeneratedDelegate {}
+protocol PassViewControllerDelegate {}
 
 class PassViewController: UIViewController {
     
@@ -21,9 +21,12 @@ class PassViewController: UIViewController {
     
     
     
-    var delegate: PassGeneratedDelegate! = nil
+    var delegate: PassViewControllerDelegate! = nil
     
+    
+    // This one seems empty even after segue
     var entrant: Guest? = nil
+    
 
     @IBAction func createNewPass(_ sender: Any) {
         dismiss(animated: true)
@@ -38,8 +41,9 @@ class PassViewController: UIViewController {
         resultLabel.layer.cornerRadius = 4
         resultLabel.clipsToBounds = true
         resultLabel.layer.borderWidth = 1
-        1
-        entrantNameLabel.text = entrant.profile?.firstName
+        
+        // entrant is empty
+        entrantNameLabel.text = entrant?.profile?.firstName
         
     }
 

@@ -38,7 +38,7 @@ class Navigation {
 let navigation = Navigation(mainNavigation: .guest, subNavigation: .freeChild)
 
 
-class ViewController: UIViewController, PassGeneratedDelegate {
+class ViewController: UIViewController, PassViewControllerDelegate {
     
     // Outlets for the sub navigations for show/hide functionality
     @IBOutlet weak var guestSubMenu: UIStackView!
@@ -87,16 +87,17 @@ class ViewController: UIViewController, PassGeneratedDelegate {
                     zipCodeAsInt = Int(zipCodeText)
                 }
                 let profile = Profile(employeeWithFirstName: firstName.text, lastName: lastName.text, street: streetAddress.text, city: city.text, state: state.text, zip: zipCodeAsInt)
-                let entrant = try Guest(as: navigation.sub, withInformation: profile)
+                entrant = try Guest(as: navigation.sub, withInformation: profile)
                 
-                print("\(String(describing: entrant.profile?.firstName)) was created successfully")
+                print("\(String(describing: entrant?.profile?.firstName)) was created successfully")
                 
             } catch ProfileError.InvalidData(let data, let type) {
                 print("Error, \(type) was missing \(data)")
             } catch {
                 print("Other error occured")
             }
-
+        
+        performSegue(withIdentifier: "GeneratePass", sender: entrant)
     }
     
     
@@ -107,8 +108,8 @@ class ViewController: UIViewController, PassGeneratedDelegate {
             if let destination = segue.destination as? PassViewController {
                     
                     // Set GameFinishedViewControllers score var to this VCs score var
-                if let entrant = entrant {
-                    destination.entrant = entrant
+                if let entrant = sender {
+                    destination.entrant = entrant as? Guest
                 } else {
                     print("entrant empty")
                 }
