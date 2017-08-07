@@ -43,34 +43,35 @@ class Employee: EmployeeEntrant {
         self.profile = profile
     }
     
-    func checkAccess(for access: Access) {
+    func checkAccess(for access: Access) -> Bool {
         
         // If access is of type AreaAccess and areaAccess contains access
         if let access = access as? AreaAccess {
             if areaAccess.contains(access) {
-                print("Access granted \(access)!")
+                return true
             } else {
-                print("Access denied \(access)!")
+                return false
             }
         }
         
         // If access is of type DiscountAccess and discountAccess contains access
         if let access = access as? DiscountAccess {
                 if discountAccess.contains(access) {
-                    print("Access granted for \(access)!")
+                    return true
                 } else {
-                    print("Access denied \(access)!")
+                    return false
                 }
         }
         
         // If access is of type RideAccess and rideAccess contains access
         if let access = access as? RideAccess {
             if rideAccess.contains(access) {
-                print("Access granted \(access)!")
+                return true
             } else {
-                print("Access denied \(access)!")
+                return false
             }
         }
+        return false
     }
 }
 

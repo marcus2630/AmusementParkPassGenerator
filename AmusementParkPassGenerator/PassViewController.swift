@@ -43,7 +43,50 @@ class PassViewController: UIViewController {
         resultLabel.layer.borderWidth = 1
         
         // entrant is empty
-        entrantNameLabel.text = entrant?.profile?.firstName
+        if let entrant = entrant {
+        
+            
+            // Set profile information for display if added
+            if let profile = entrant.profile {
+                
+                if let firstName = profile.firstName {
+                    entrantNameLabel.text = firstName
+                    
+                    if let lastName = profile.lastName {
+                        entrantNameLabel.text! += " \(lastName)"
+                    }
+                } else if profile.firstName == "" && profile.lastName == "" {
+                    entrantNameLabel.text = "Anonymous"
+                }
+            }
+            
+            // Set entrant type for display
+            switch entrant.type {
+            case .classic: entrantTypeLabel.text = "Classic Guest Pass"
+            case .foodService: entrantTypeLabel.text = "Food Service Employee Pass"
+            case .freeChild: entrantTypeLabel.text = "Child Guest Pass"
+            case .maintenance: entrantTypeLabel.text = "Maintenance Employee Pass"
+            case .manager: entrantTypeLabel.text = "Manager Pass"
+            case .rideService: entrantTypeLabel.text = "Ride Service Employee Pass"
+            case .senior: entrantTypeLabel.text = "Senior Guest Pass"
+            case .vip: entrantTypeLabel.text = "VIP Guest Pass"
+            }
+            
+            // Set entrant accesses for display
+            var access: [String] = []
+            
+            if entrant.checkAccess(for: AreaAccess.amusement) {
+                access.append("Access to amusements.")
+            }
+            if entrant.checkAccess(for: RideAccess.accessAllRides) {
+                access.append("Access to all rides.")
+            }
+            if entrant.checkAccess(for: RideAccess.skipAllLines) {
+                access.append("Can skip all lines.")
+            }
+            
+            entrantPermissionsLabel.text = access.joined(separator: "\n")
+        }
         
     }
 

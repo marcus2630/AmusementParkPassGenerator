@@ -17,25 +17,36 @@ class Guest: GuestEntrant {
     
     init(as type: EntrantType, withInformation profile: Profile?) throws {
         
-        // If free child, guard that birthday is not nil
+        
+        /* 
+           Checking profiles for different types
+        */
         if type == .freeChild {
             guard profile?.birthday != nil else {
                 throw ProfileError.InvalidData(data: "birthday", type: type)
             }
         }
         
+        if type == .senior {
+            guard profile?.firstName != nil else { throw ProfileError.InvalidData(data: "firstname", type: type) }
+            guard profile?.firstName != nil else { throw ProfileError.InvalidData(data: "lastname", type: type) }
+            guard profile?.birthday != nil else { throw ProfileError.InvalidData(data: "firstname", type: type) }
+        }
+        
+        
         self.type = type
         self.profile = profile
     }
     
-    func checkAccess(for access: Access) {
+    func checkAccess(for access: Access) -> Bool {
         
         // If access is of type AreaAccess and areaAccess contains access
         if let access = access as? AreaAccess {
             if areaAccess.contains(access) {
                 print("Access granted \(access)!")
+                return true
             } else {
-                print("Access denied \(access)!")
+                return false
             }
         }
         
@@ -43,9 +54,9 @@ class Guest: GuestEntrant {
         if let access = access as? DiscountAccess {
             if let discountAccess = discountAccess {
                 if discountAccess.contains(access) {
-                    print("Access granted for \(access)!")
+                    return true
                 } else {
-                    print("Access denied \(access)!")
+                    return false
                 }
             }
         }
@@ -53,11 +64,12 @@ class Guest: GuestEntrant {
         // If access is of type RideAccess and rideAccess contains access
         if let access = access as? RideAccess {
             if rideAccess.contains(access) {
-                print("Access granted \(access)!")
+                return true
             } else {
-                print("Access denied \(access)!")
+                return false
             }
         }
+        return false
     }
     
 }

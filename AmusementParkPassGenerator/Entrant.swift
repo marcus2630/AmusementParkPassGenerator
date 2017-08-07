@@ -12,7 +12,7 @@ import Foundation
 protocol Entrant {
     var areaAccess: [AreaAccess] { get }
     var rideAccess: [RideAccess] { get }
-    func checkAccess(for access: Access)
+    func checkAccess(for access: Access) -> Bool
 }
 
 protocol EmployeeEntrant: Entrant {
