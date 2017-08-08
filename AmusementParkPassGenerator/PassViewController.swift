@@ -55,8 +55,11 @@ class PassViewController: UIViewController {
                     if let lastName = profile.lastName {
                         entrantNameLabel.text! += " \(lastName)"
                     }
-                } else if profile.firstName == "" && profile.lastName == "" {
+                }
+                
+                if entrant.profile?.firstName == "" {
                     entrantNameLabel.text = "Anonymous"
+                    print("nil=")
                 }
             }
             
@@ -76,7 +79,19 @@ class PassViewController: UIViewController {
             var access: [String] = []
             
             if entrant.checkAccess(for: AreaAccess.amusement) {
-                access.append("Access to amusements.")
+                access.append("Access to amusements area.")
+            }
+            if entrant.checkAccess(for: AreaAccess.kitchen) {
+                access.append("Can access the kitchen.")
+            }
+            if entrant.checkAccess(for: AreaAccess.maintenance) {
+                access.append("Can access the maintenance areas.")
+            }
+            if entrant.checkAccess(for: AreaAccess.office) {
+                access.append("Can access the office.")
+            }
+            if entrant.checkAccess(for: AreaAccess.rideControl) {
+                access.append("Can access the ride-control area.")
             }
             if entrant.checkAccess(for: RideAccess.accessAllRides) {
                 access.append("Access to all rides.")
@@ -84,10 +99,36 @@ class PassViewController: UIViewController {
             if entrant.checkAccess(for: RideAccess.skipAllLines) {
                 access.append("Can skip all lines.")
             }
+            if entrant.checkAccess(for: DiscountAccess.discountOnFood10) {
+                access.append("Has 10% discount on food.")
+            }
+            if entrant.checkAccess(for: DiscountAccess.discountOnFood15) {
+                access.append("Has 15% discount on food.")
+            }
+            if entrant.checkAccess(for: DiscountAccess.discountOnFood20) {
+                access.append("Has 20% discount on food.")
+            }
+            if entrant.checkAccess(for: DiscountAccess.discountOnFood25) {
+                access.append("Has 25% discount on food.")
+            }
+            if entrant.checkAccess(for: DiscountAccess.discountOnMerchandise10) {
+                access.append("Has 10% discount on merchandise.")
+            }
+            if entrant.checkAccess(for: DiscountAccess.discountOnMerchandise15) {
+                access.append("Has 20% discount on merchandise.")
+            }
+            if entrant.checkAccess(for: DiscountAccess.discountOnMerchandise20) {
+                access.append("Has 15% discount on merchandise.")
+            }
+            if entrant.checkAccess(for: DiscountAccess.discountOnMerchandise25) {
+                access.append("Has 25% discount on merchandise.")
+            }
+            
             
             entrantPermissionsLabel.text = access.joined(separator: "\n")
+            entrantPermissionsLabel.sizeToFit()
         }
-        
+        else { entrantNameLabel.text = "Anonymous" }
     }
 
     override func didReceiveMemoryWarning() {

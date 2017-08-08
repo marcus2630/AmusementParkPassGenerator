@@ -23,14 +23,14 @@ class Guest: GuestEntrant {
         */
         if type == .freeChild {
             guard profile?.birthday != nil else {
-                throw ProfileError.InvalidData(data: "birthday", type: type)
+                throw ProfileError.InvalidData(data: "birthday")
             }
         }
         
         if type == .senior {
-            guard profile?.firstName != nil else { throw ProfileError.InvalidData(data: "firstname", type: type) }
-            guard profile?.firstName != nil else { throw ProfileError.InvalidData(data: "lastname", type: type) }
-            guard profile?.birthday != nil else { throw ProfileError.InvalidData(data: "firstname", type: type) }
+            guard profile?.firstName != nil else { throw ProfileError.InvalidData(data: "firstname") }
+            guard profile?.firstName != nil else { throw ProfileError.InvalidData(data: "lastname") }
+            guard profile?.birthday != nil else { throw ProfileError.InvalidData(data: "firstname") }
         }
         
         

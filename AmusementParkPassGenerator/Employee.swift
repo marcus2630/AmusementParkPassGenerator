@@ -16,27 +16,27 @@ class Employee: EmployeeEntrant {
         
         // Guard that all profile requirements are filled
         guard profile.firstName != nil && profile.firstName != "" else {
-            throw ProfileError.InvalidData(data: "first name", type: type)
+            throw ProfileError.InvalidData(data: "first name")
         }
         
         guard profile.lastName != nil && profile.lastName != "" else {
-            throw ProfileError.InvalidData(data: "last name", type: type)
+            throw ProfileError.InvalidData(data: "last name")
         }
         
         guard profile.city != nil && profile.city != "" else {
-            throw ProfileError.InvalidData(data: "city", type: type)
+            throw ProfileError.InvalidData(data: "city")
         }
         
         guard profile.state != nil && profile.state != "" else {
-            throw ProfileError.InvalidData(data: "state", type: type)
+            throw ProfileError.InvalidData(data: "state")
         }
         
         guard profile.street != nil && profile.street != "" else {
-            throw ProfileError.InvalidData(data: "street address", type: type)
+            throw ProfileError.InvalidData(data: "street address")
         }
         
         guard profile.zip != nil else {
-            throw ProfileError.InvalidData(data: "zip code", type: type)
+            throw ProfileError.InvalidData(data: "zip code")
         }
         
         self.type = type

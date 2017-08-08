@@ -9,7 +9,7 @@
 import Foundation
 
 enum ProfileError: Error {
-    case InvalidData(data: String, type: EntrantType)
+    case InvalidData(data: String)
 }
 
 
