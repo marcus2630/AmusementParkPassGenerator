@@ -19,7 +19,6 @@
 		2C09AA751EC23381007304DE /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09AA741EC23381007304DE /* Profile.swift */; };
 		2C71DC001F0AC4F900AF72B4 /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C71DBFF1F0AC4F900AF72B4 /* CornerRadius.swift */; };
 		2C71DC061F0AD3B600AF72B4 /* PassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C71DC051F0AD3B600AF72B4 /* PassViewController.swift */; };
-		2CD5F5161EC8BE50000F230D /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5F5151EC8BE50000F230D /* Guest.swift */; };
 		2CD5F5181EC8BE96000F230D /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5F5171EC8BE96000F230D /* Employee.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +58,6 @@
 		2C09AA741EC23381007304DE /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		2C71DBFF1F0AC4F900AF72B4 /* CornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
 		2C71DC051F0AD3B600AF72B4 /* PassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassViewController.swift; sourceTree = "<group>"; };
-		2CD5F5151EC8BE50000F230D /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		2CD5F5171EC8BE96000F230D /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,7 +116,6 @@
 				2C09AA741EC23381007304DE /* Profile.swift */,
 				2C09AA701EC103BF007304DE /* Entrant.swift */,
 				2CD5F5171EC8BE96000F230D /* Employee.swift */,
-				2CD5F5151EC8BE50000F230D /* Guest.swift */,
 				2C71DBFF1F0AC4F900AF72B4 /* CornerRadius.swift */,
 				2C09AA461EC102AD007304DE /* Main.storyboard */,
 				2C09AA491EC102AD007304DE /* Assets.xcassets */,
@@ -285,7 +282,6 @@
 			files = (
 				2C09AA751EC23381007304DE /* Profile.swift in Sources */,
 				2C09AA711EC103BF007304DE /* Entrant.swift in Sources */,
-				2CD5F5161EC8BE50000F230D /* Guest.swift in Sources */,
 				2CD5F5181EC8BE96000F230D /* Employee.swift in Sources */,
 				2C09AA451EC102AD007304DE /* ViewController.swift in Sources */,
 				2C09AA731EC23371007304DE /* Access.swift in Sources */,

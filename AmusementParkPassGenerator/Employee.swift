@@ -8,35 +8,55 @@
 
 import Foundation
 
-class Employee: EmployeeEntrant {
+class Entrant {
     var type: EntrantType
-    var profile: Profile
+    var profile: Profile?
     
-    init(as type: EntrantType, withInformation profile: Profile) throws {
+    init(as type: EntrantType, withInformation profile: Profile?) throws {
         
+        if  type == .foodService ||
+            type == .maintenance ||
+            type == .manager ||
+            type == .rideService {
+            
         // Guard that all profile requirements are filled
-        guard profile.firstName != nil && profile.firstName != "" else {
+        guard profile?.firstName != nil && profile?.firstName != "" else {
             throw ProfileError.InvalidData(data: "first name")
         }
         
-        guard profile.lastName != nil && profile.lastName != "" else {
+        guard profile?.lastName != nil && profile?.lastName != "" else {
             throw ProfileError.InvalidData(data: "last name")
         }
         
-        guard profile.city != nil && profile.city != "" else {
+        guard profile?.city != nil && profile?.city != "" else {
             throw ProfileError.InvalidData(data: "city")
         }
         
-        guard profile.state != nil && profile.state != "" else {
+        guard profile?.state != nil && profile?.state != "" else {
             throw ProfileError.InvalidData(data: "state")
         }
         
-        guard profile.street != nil && profile.street != "" else {
+        guard profile?.street != nil && profile?.street != "" else {
             throw ProfileError.InvalidData(data: "street address")
         }
         
-        guard profile.zip != nil else {
+        guard profile?.zip != nil else {
             throw ProfileError.InvalidData(data: "zip code")
+        }
+            
+            
+        }
+        
+        if type == .freeChild {
+            guard profile?.birthday != nil else {
+                throw ProfileError.InvalidData(data: "birthday")
+            }
+        }
+        
+        if type == .senior {
+            guard profile?.firstName != nil else { throw ProfileError.InvalidData(data: "firstname") }
+            guard profile?.firstName != nil else { throw ProfileError.InvalidData(data: "lastname") }
+            guard profile?.birthday != nil else { throw ProfileError.InvalidData(data: "firstname") }
         }
         
         self.type = type
@@ -56,11 +76,13 @@ class Employee: EmployeeEntrant {
         
         // If access is of type DiscountAccess and discountAccess contains access
         if let access = access as? DiscountAccess {
+            if let discountAccess = discountAccess {
                 if discountAccess.contains(access) {
                     return true
                 } else {
                     return false
                 }
+            }
         }
         
         // If access is of type RideAccess and rideAccess contains access
@@ -75,30 +97,43 @@ class Employee: EmployeeEntrant {
     }
 }
 
-extension Employee {
+extension Entrant {
     
     // Compute accesses according to chosen employee type
     var areaAccess: [AreaAccess] {
         var areas: [AreaAccess]
         
+        // Employee
         switch type {
         case .foodService:          areas = [.amusement, .kitchen]
         case .rideService:          areas = [.amusement, .rideControl]
         case .maintenance:          areas = [.amusement, .kitchen, .maintenance, .rideControl]
         case .manager:              areas = [.amusement, .kitchen, .maintenance, .office, .rideControl]
-        default: areas = []
+        
+        // Guest
+        case .classic,
+             .vip,
+             .senior,
+             .freeChild:              areas = [.amusement]
         }
         return areas
     }
     
-    var discountAccess: [DiscountAccess] {
-        var discounts: [DiscountAccess]
+    var discountAccess: [DiscountAccess]? {
+        var discounts: [DiscountAccess]?
         switch type {
+        
+        // Employee
         case .foodService,
              .maintenance,
              .rideService:          discounts = [.discountOnFood15, .discountOnMerchandise25]
         case .manager:              discounts = [.discountOnFood25, .discountOnMerchandise25]
-        default: discounts = []
+        
+        // Guest
+        case .classic,
+             .freeChild:               discounts = nil
+        case .vip:                     discounts = [.discountOnFood10, .discountOnMerchandise20]
+        case .senior:                  discounts = [.discountOnFood10, .discountOnMerchandise10]
         }
         return discounts
     }
@@ -107,11 +142,17 @@ extension Employee {
         var rides: [RideAccess]
         
         switch type {
+            
+        // Employee
         case .foodService,
              .maintenance,
              .rideService,
              .manager:          rides = [.accessAllRides]
-        default: rides = []
+        
+        // Guest
+        case    .classic,
+                .freeChild:         rides = [.accessAllRides]
+        case    .vip, .senior:      rides = [.accessAllRides, .skipAllLines]
         }
         return rides
     }

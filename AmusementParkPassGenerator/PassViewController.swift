@@ -25,7 +25,7 @@ class PassViewController: UIViewController {
     
     
     // This one seems empty even after segue
-    var entrant: Guest? = nil
+    var entrant: Entrant? = nil
     
 
     @IBAction func createNewPass(_ sender: Any) {

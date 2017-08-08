@@ -75,7 +75,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
     
     
     // Declared entrant to avoid scope issues
-    var entrant: Guest? = nil
+    var entrant: Entrant? = nil
     
     @IBAction func generatePassAndSegue(_ sender: Any) {
         
@@ -87,7 +87,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
                     zipCodeAsInt = Int(zipCodeText)
                 }
                 let profile = Profile(employeeWithFirstName: firstName.text, lastName: lastName.text, street: streetAddress.text, city: city.text, state: state.text, zip: zipCodeAsInt)
-                entrant = try Guest(as: navigation.sub, withInformation: profile)
+                entrant = try Entrant(as: navigation.sub, withInformation: profile)
                 
                 if entrant != nil {
                     performSegue(withIdentifier: "GeneratePass", sender: entrant)
@@ -117,7 +117,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
                     
                     // Set GameFinishedViewControllers score var to this VCs score var
                 if let entrant = sender {
-                    destination.entrant = entrant as? Guest
+                    destination.entrant = entrant as? Entrant
                 } else {
                     print("entrant empty")
                 }
