@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A291m" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -197,14 +197,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUw-e3-zts">
                                         <rect key="frame" x="20" y="15" width="242.5" height="100"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of Birth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjU-LO-Jpm">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of birth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjU-LO-Jpm">
                                                 <rect key="frame" x="8" y="8" width="226.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" red="0.19657203555107117" green="0.16741254925727844" blue="0.22114014625549316" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="DD / MM / YYYY" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BHV-Hk-Ofd">
-                                                <rect key="frame" x="8" y="38.5" width="226.5" height="53.5"/>
+                                                <rect key="frame" x="8" y="38" width="226.5" height="54"/>
                                                 <color key="backgroundColor" red="0.85913538932800293" green="0.83851373195648193" blue="0.87559646368026733" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="19"/>
@@ -224,14 +224,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lQz-la-A8v">
                                         <rect key="frame" x="262.5" y="15" width="243" height="100"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SSN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2y-Oa-y7z">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of visit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2y-Oa-y7z">
                                                 <rect key="frame" x="8" y="8" width="227" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" red="0.1965720356" green="0.16741254929999999" blue="0.22114014630000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="###### - ####" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xOb-TO-Ulw">
-                                                <rect key="frame" x="8" y="38.5" width="227" height="53.5"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="DD / MM / YYYY" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xOb-TO-Ulw" userLabel="Date of visit">
+                                                <rect key="frame" x="8" y="38" width="227" height="54"/>
                                                 <color key="backgroundColor" red="0.8591353893" green="0.83851373200000001" blue="0.87559646369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="19"/>
@@ -621,6 +621,7 @@
                         <outlet property="city" destination="NPf-Ap-rGk" id="uZY-de-oqj"/>
                         <outlet property="company" destination="oBA-KB-mRF" id="hxN-ee-1jW"/>
                         <outlet property="dateOfBirth" destination="BHV-Hk-Ofd" id="HOW-ND-R8F"/>
+                        <outlet property="dateOfVisit" destination="xOb-TO-Ulw" id="uen-0b-akl"/>
                         <outlet property="employeeButton" destination="Eyx-gz-brh" id="CJP-mK-SUC"/>
                         <outlet property="employeeSubMenu" destination="92r-Fq-yJz" id="8JP-KV-iDe"/>
                         <outlet property="firstName" destination="E6A-dD-BDg" id="j7n-Nm-9hY"/>
@@ -633,7 +634,6 @@
                         <outlet property="project" destination="dWB-c6-V5j" id="Lku-F5-O05"/>
                         <outlet property="rideServiceButton" destination="4JI-fQ-d3l" id="fEa-cP-qgi"/>
                         <outlet property="seniorButton" destination="LEK-S3-0hJ" id="VkN-kX-A4K"/>
-                        <outlet property="ssn" destination="xOb-TO-Ulw" id="TgG-xu-qp7"/>
                         <outlet property="state" destination="voA-aU-zvp" id="DkA-Db-vYK"/>
                         <outlet property="streetAddress" destination="Ynp-jv-fdk" id="1mg-55-04U"/>
                         <outlet property="vendorButton" destination="xbH-zY-aEb" id="jbB-kM-fQC"/>

@@ -48,7 +48,7 @@ class Entrant {
         }
         
         if type == .freeChild {
-            guard profile?.birthday != nil else {
+            guard profile?.birthday != nil && profile?.birthday != "" else {
                 throw ProfileError.InvalidData(data: "birthday")
             }
         }

@@ -63,7 +63,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
     
     // Form outlets
     @IBOutlet weak var dateOfBirth: UITextField!
-    @IBOutlet weak var ssn: UITextField!
+    @IBOutlet weak var dateOfVisit: UITextField!
     @IBOutlet weak var project: UITextField!
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
@@ -209,7 +209,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
     func highlightRequiredInputFields() {
         
         dateOfBirth.backgroundColor = UIColor.clear
-        ssn.backgroundColor = UIColor.clear
+        dateOfVisit.backgroundColor = UIColor.clear
         firstName.backgroundColor = UIColor.clear
         lastName.backgroundColor = UIColor.clear
         company.backgroundColor = UIColor.clear
@@ -220,7 +220,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
         zipCode.backgroundColor = UIColor.clear
         
         
-        if navigation.main == .employee {
+        if navigation.main == .employee || navigation.main == .manager {
             dateOfBirth.backgroundColor = UIColor.white
             firstName.backgroundColor = UIColor.white
             lastName.backgroundColor = UIColor.white
@@ -228,6 +228,15 @@ class ViewController: UIViewController, PassViewControllerDelegate {
             city.backgroundColor = UIColor.white
             state.backgroundColor = UIColor.white
             zipCode.backgroundColor = UIColor.white
+        }
+        
+        if navigation.main == .vendor {
+            dateOfBirth.backgroundColor = UIColor.white
+            dateOfVisit.backgroundColor = UIColor.white
+            firstName.backgroundColor = UIColor.white
+            lastName.backgroundColor = UIColor.white
+            company.backgroundColor = UIColor.white
+            
         }
         
         switch navigation.sub {
