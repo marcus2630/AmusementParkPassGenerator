@@ -82,12 +82,31 @@ class ViewController: UIViewController, PassViewControllerDelegate {
         
             do {
                 var zipCodeAsInt: Int? = nil
+                var dateOfBirthAsInt: Int? = nil
                 
                 if let zipCodeText = zipCode.text {
                     zipCodeAsInt = Int(zipCodeText)
                 }
-                let profile = Profile(employeeWithFirstName: firstName.text, lastName: lastName.text, street: streetAddress.text, city: city.text, state: state.text, zip: zipCodeAsInt)
-                entrant = try Entrant(as: navigation.sub, withInformation: profile)
+                
+                if let dateOfBirthText = dateOfBirth.text {
+                    dateOfBirthAsInt = Int(dateOfBirthText)
+                }
+                
+                if navigation.main == .employee {
+                    let profile = Profile(employeeWithFirstName: firstName.text, lastName: lastName.text, street: streetAddress.text, city: city.text, state: state.text, zip: zipCodeAsInt)
+                    entrant = try Entrant(as: navigation.sub, withInformation: profile)
+                }
+                
+                if navigation.main == .guest {
+                    if navigation.sub == .freeChild {
+                        let profile = Profile(freeChildWithBirthday: dateOfBirthAsInt)
+                        entrant = try Entrant(as: navigation.sub, withInformation: profile)
+                    } else {
+                        let profile = Profile(firstName: firstName.text, lastName: lastName.text, street: streetAddress.text, city: city.text, state: state.text, zip: zipCodeAsInt, birthday: dateOfBirthAsInt)
+                        entrant = try Entrant(as: navigation.sub, withInformation: profile)
+                    }
+                    
+                }
                 
                 if entrant != nil {
                     performSegue(withIdentifier: "GeneratePass", sender: entrant)

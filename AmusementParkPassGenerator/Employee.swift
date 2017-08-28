@@ -56,7 +56,7 @@ class Entrant {
         if type == .senior {
             guard profile?.firstName != nil else { throw ProfileError.InvalidData(data: "firstname") }
             guard profile?.firstName != nil else { throw ProfileError.InvalidData(data: "lastname") }
-            guard profile?.birthday != nil else { throw ProfileError.InvalidData(data: "firstname") }
+            guard profile?.birthday != nil else { throw ProfileError.InvalidData(data: "birthday") }
         }
         
         self.type = type

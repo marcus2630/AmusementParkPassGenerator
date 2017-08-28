@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="17A291m" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -749,11 +749,11 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="iHn-VK-kbm">
                                 <rect key="frame" x="20" y="622.5" width="728" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECJ-4w-bMz" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="216" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECJ-4w-bMz" userLabel="Office" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="152" height="50"/>
                                         <color key="backgroundColor" red="0.93740326166152954" green="0.92513066530227661" blue="0.94564527273178101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
-                                        <state key="normal" title="Area Access">
+                                        <state key="normal" title="Office">
                                             <color key="titleColor" red="0.24534249305725098" green="0.55041688680648804" blue="0.51877117156982422" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -763,10 +763,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Je-QH-3iJ" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
-                                        <rect key="frame" x="256" y="0.0" width="216" height="50"/>
+                                        <rect key="frame" x="192" y="0.0" width="152" height="50"/>
                                         <color key="backgroundColor" red="0.93740326169999999" green="0.92513066529999999" blue="0.94564527269999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
-                                        <state key="normal" title="Ride Access">
+                                        <state key="normal" title="Kitchen">
                                             <color key="titleColor" red="0.2453424931" green="0.5504168868" blue="0.51877117159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -776,10 +776,23 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4WU-bY-DPX" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
-                                        <rect key="frame" x="512" y="0.0" width="216" height="50"/>
+                                        <rect key="frame" x="384" y="0.0" width="152" height="50"/>
                                         <color key="backgroundColor" red="0.93740326169999999" green="0.92513066529999999" blue="0.94564527269999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
-                                        <state key="normal" title="Discount Access">
+                                        <state key="normal" title="Ride Control">
+                                            <color key="titleColor" red="0.2453424931" green="0.5504168868" blue="0.51877117159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEw-Vs-HVC" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
+                                        <rect key="frame" x="576" y="0.0" width="152" height="50"/>
+                                        <color key="backgroundColor" red="0.93740326169999999" green="0.92513066529999999" blue="0.94564527269999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                        <state key="normal" title="Amusement">
                                             <color key="titleColor" red="0.2453424931" green="0.5504168868" blue="0.51877117159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -798,11 +811,76 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="i2g-vj-uKG">
+                                <rect key="frame" x="20" y="693" width="728" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Gf-th-EIf" userLabel="Office" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="152" height="50"/>
+                                        <color key="backgroundColor" red="0.93740326169999999" green="0.92513066529999999" blue="0.94564527269999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                        <state key="normal" title="Rides">
+                                            <color key="titleColor" red="0.2453424931" green="0.5504168868" blue="0.51877117159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLE-TX-Ho6" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
+                                        <rect key="frame" x="192" y="0.0" width="152" height="50"/>
+                                        <color key="backgroundColor" red="0.93740326169999999" green="0.92513066529999999" blue="0.94564527269999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                        <state key="normal" title="Food Discount">
+                                            <color key="titleColor" red="0.2453424931" green="0.5504168868" blue="0.51877117159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RjE-aR-rde" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
+                                        <rect key="frame" x="384" y="0.0" width="152" height="50"/>
+                                        <color key="backgroundColor" red="0.93740326169999999" green="0.92513066529999999" blue="0.94564527269999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                        <state key="normal" title="Merch Discount">
+                                            <color key="titleColor" red="0.2453424931" green="0.5504168868" blue="0.51877117159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="px1-aA-9aJ" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
+                                        <rect key="frame" x="576" y="0.0" width="152" height="50"/>
+                                        <color key="backgroundColor" red="0.93740326169999999" green="0.92513066529999999" blue="0.94564527269999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                        <state key="normal" title="Maintenance">
+                                            <color key="titleColor" red="0.2453424931" green="0.5504168868" blue="0.51877117159999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="JJP-L9-l0v"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHK-KI-tLK">
-                                <rect key="frame" x="20" y="707.5" width="728" height="160"/>
+                                <rect key="frame" x="20" y="763" width="728" height="96"/>
                                 <color key="backgroundColor" red="0.78093178781481842" green="0.76169701471593132" blue="0.80016656091370564" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="Cez-4w-fZK"/>
+                                    <constraint firstAttribute="height" constant="96" id="Cez-4w-fZK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <color key="textColor" red="0.42450611333463495" green="0.4140502977352597" blue="0.4349619289340102" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -820,7 +898,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FY7-5L-b3r" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
-                                <rect key="frame" x="259" y="917.5" width="250" height="55"/>
+                                <rect key="frame" x="259" y="884" width="250" height="55"/>
                                 <color key="backgroundColor" red="0.79639607667922974" green="0.77576333284378052" blue="0.81285625696182251" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="Cje-jo-8R0"/>
@@ -843,25 +921,28 @@
                         <color key="backgroundColor" red="0.85882352939999995" green="0.83921568629999999" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="5ZF-r7-x69" firstAttribute="top" secondItem="PiI-ka-WDg" secondAttribute="top" id="0f1-NQ-YwL"/>
-                            <constraint firstItem="MHK-KI-tLK" firstAttribute="top" secondItem="iHn-VK-kbm" secondAttribute="bottom" constant="35" id="3Ox-HM-s2T"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iHn-VK-kbm" secondAttribute="trailing" id="4J6-vV-pbn"/>
                             <constraint firstItem="9kf-Gi-M5D" firstAttribute="top" secondItem="yXX-nD-ohN" secondAttribute="bottom" constant="40" id="6K6-eJ-mAn"/>
                             <constraint firstAttribute="trailing" secondItem="5ZF-r7-x69" secondAttribute="trailing" id="BX3-3K-hNf"/>
-                            <constraint firstItem="FY7-5L-b3r" firstAttribute="top" secondItem="MHK-KI-tLK" secondAttribute="bottom" constant="50" id="DY3-gc-xxr"/>
+                            <constraint firstItem="FY7-5L-b3r" firstAttribute="top" secondItem="MHK-KI-tLK" secondAttribute="bottom" constant="25" id="DY3-gc-xxr"/>
                             <constraint firstItem="WbO-Rt-VYt" firstAttribute="centerX" secondItem="PiI-ka-WDg" secondAttribute="centerX" id="DoS-Mv-hqJ"/>
                             <constraint firstItem="fcv-z4-fMk" firstAttribute="top" secondItem="WbO-Rt-VYt" secondAttribute="bottom" constant="8" id="Kfg-mc-Wwz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="i2g-vj-uKG" secondAttribute="trailing" id="Kux-qh-6QP"/>
                             <constraint firstItem="WbO-Rt-VYt" firstAttribute="top" secondItem="9kf-Gi-M5D" secondAttribute="bottom" constant="35" id="L63-12-9xi"/>
                             <constraint firstItem="fcv-z4-fMk" firstAttribute="centerX" secondItem="PiI-ka-WDg" secondAttribute="centerX" id="QOs-nL-Wwf"/>
                             <constraint firstItem="9kf-Gi-M5D" firstAttribute="leading" secondItem="PiI-ka-WDg" secondAttribute="leading" id="SnB-Ai-fWV"/>
                             <constraint firstItem="iHn-VK-kbm" firstAttribute="leading" secondItem="PiI-ka-WDg" secondAttribute="leadingMargin" id="SwI-eS-8kG"/>
                             <constraint firstItem="MHK-KI-tLK" firstAttribute="leading" secondItem="PiI-ka-WDg" secondAttribute="leadingMargin" id="UJy-hn-Svt"/>
+                            <constraint firstItem="i2g-vj-uKG" firstAttribute="top" secondItem="iHn-VK-kbm" secondAttribute="bottom" constant="20" id="Vjp-xL-TCl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MHK-KI-tLK" secondAttribute="trailing" id="bE2-yu-a1K"/>
                             <constraint firstAttribute="trailing" secondItem="9kf-Gi-M5D" secondAttribute="trailing" id="bZB-4E-7ln"/>
+                            <constraint firstItem="i2g-vj-uKG" firstAttribute="leading" secondItem="PiI-ka-WDg" secondAttribute="leadingMargin" id="dj7-b1-0AF"/>
                             <constraint firstItem="iHn-VK-kbm" firstAttribute="top" secondItem="fcv-z4-fMk" secondAttribute="bottom" constant="35" id="ffB-x1-icG"/>
                             <constraint firstItem="FY7-5L-b3r" firstAttribute="centerX" secondItem="PiI-ka-WDg" secondAttribute="centerX" id="fp2-2k-wfQ"/>
                             <constraint firstItem="yXX-nD-ohN" firstAttribute="top" secondItem="5ZF-r7-x69" secondAttribute="bottom" constant="20" id="jKf-jx-waD"/>
                             <constraint firstItem="yXX-nD-ohN" firstAttribute="leading" secondItem="PiI-ka-WDg" secondAttribute="leadingMargin" id="jMA-jQ-dhJ"/>
                             <constraint firstItem="yXX-nD-ohN" firstAttribute="trailing" secondItem="PiI-ka-WDg" secondAttribute="trailingMargin" id="pya-EK-y2H"/>
+                            <constraint firstItem="MHK-KI-tLK" firstAttribute="top" secondItem="i2g-vj-uKG" secondAttribute="bottom" constant="20" id="r4c-0p-I1F"/>
                             <constraint firstItem="5ZF-r7-x69" firstAttribute="leading" secondItem="PiI-ka-WDg" secondAttribute="leading" id="yKL-Pp-7jP"/>
                         </constraints>
                     </view>
