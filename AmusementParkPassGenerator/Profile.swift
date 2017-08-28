@@ -20,9 +20,9 @@ struct Profile {
     var city: String?
     var state: String?
     var zip: Int?
-    var birthday: Int?
+    var birthday: String?
     
-    init(firstName: String?, lastName: String?, street: String?, city: String?, state: String?, zip: Int?, birthday: Int?) {
+    init(firstName: String?, lastName: String?, street: String?, city: String?, state: String?, zip: Int?, birthday: String?) {
         self.firstName = firstName
         self.lastName = lastName
         self.street = street
@@ -36,7 +36,7 @@ struct Profile {
         self.init(firstName: firstName, lastName: lastName, street: street, city: city, state: state, zip: zip, birthday: nil)
     }
     
-    init(freeChildWithBirthday birthday: Int?) {
+    init(freeChildWithBirthday birthday: String?) {
         self.birthday = birthday
     }
 }
