@@ -73,6 +73,19 @@ class ViewController: UIViewController, PassViewControllerDelegate {
     @IBOutlet weak var state: UITextField!
     @IBOutlet weak var zipCode: UITextField!
     
+    @IBAction func populateData(_ sender: Any) {
+        switch navigation.sub {
+        case .foodService, .rideService, .maintenance, .manager:
+            firstName.text = "Magnus"
+            lastName.text = "Rasmussen"
+            dateOfBirth.text = "26-03-1995"
+            streetAddress.text = "Jyllingevej 12"
+            city.text = "Copenhagen"
+            state.text = "Sjaelland Island"
+            zipCode.text = "1620"
+        default: break
+        }
+    }
     
     // Declared entrant to avoid scope issues
     var entrant: Entrant? = nil
@@ -158,7 +171,10 @@ class ViewController: UIViewController, PassViewControllerDelegate {
         case 2: navigation.main = .employee
             
         case 3: navigation.main = .manager
+                navigation.sub  = .manager
+            
         case 4: navigation.main = .vendor
+                navigation.sub  = .vendor
             
         // Guest menu
         case 5: navigation.sub = .freeChild
@@ -281,6 +297,8 @@ class ViewController: UIViewController, PassViewControllerDelegate {
         case .rideService:    highlight(button: rideServiceButton, size: 16.0)
         case .manager :     highlight(button: managerButton, size: 19.0)
         case .maintenance:   highlight(button: maintenanceButton, size: 16.0)
+        case .vendor :      highlight(button: vendorButton, size: 19.0)
+        
         }
     }
 

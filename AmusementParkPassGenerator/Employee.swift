@@ -54,9 +54,9 @@ class Entrant {
         }
         
         if type == .senior {
-            guard profile?.firstName != nil else { throw ProfileError.InvalidData(data: "firstname") }
-            guard profile?.firstName != nil else { throw ProfileError.InvalidData(data: "lastname") }
-            guard profile?.birthday != nil else { throw ProfileError.InvalidData(data: "birthday") }
+            guard profile?.firstName != nil && profile?.firstName != "" else { throw ProfileError.InvalidData(data: "firstname") }
+            guard profile?.lastName != nil && profile?.lastName != "" else { throw ProfileError.InvalidData(data: "lastname") }
+            guard profile?.birthday != nil  && profile?.birthday != "" else { throw ProfileError.InvalidData(data: "birthday") }
         }
         
         self.type = type
@@ -105,7 +105,7 @@ extension Entrant {
         
         // Employee
         switch type {
-        case .foodService:          areas = [.amusement, .kitchen]
+        case .foodService, .vendor: areas = [.amusement, .kitchen]
         case .rideService:          areas = [.amusement, .rideControl]
         case .maintenance:          areas = [.amusement, .kitchen, .maintenance, .rideControl]
         case .manager:              areas = [.amusement, .kitchen, .maintenance, .office, .rideControl]
@@ -131,7 +131,8 @@ extension Entrant {
         
         // Guest
         case .classic,
-             .freeChild:               discounts = nil
+             .freeChild,
+             .vendor:               discounts = nil
         case .vip:                     discounts = [.discountOnFood10, .discountOnMerchandise20]
         case .senior:                  discounts = [.discountOnFood10, .discountOnMerchandise10]
         }
@@ -153,6 +154,7 @@ extension Entrant {
         case    .classic,
                 .freeChild:         rides = [.accessAllRides]
         case    .vip, .senior:      rides = [.accessAllRides, .skipAllLines]
+        case .vendor:               rides = [.seeEntrantAccessRules]
         }
         return rides
     }

@@ -16,6 +16,8 @@ enum EntrantType {
     
     // Guest
     case classic, vip, freeChild, senior
+    
+    case vendor
 }
 
 

@@ -568,6 +568,9 @@
                                                 <integer key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="populateData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lPy-gP-paI"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

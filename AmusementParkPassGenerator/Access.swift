@@ -25,6 +25,7 @@ enum AreaAccess: Access {
 enum RideAccess: Access {
     case accessAllRides
     case skipAllLines
+    case seeEntrantAccessRules
 }
 
 // Having associated values on enum when casting to it gives error: Cannot convert type foo to argument type '_NilOptionalComparisonType'

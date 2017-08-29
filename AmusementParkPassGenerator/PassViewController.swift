@@ -73,6 +73,7 @@ class PassViewController: UIViewController {
             case .rideService: entrantTypeLabel.text = "Ride Service Employee Pass"
             case .senior: entrantTypeLabel.text = "Senior Guest Pass"
             case .vip: entrantTypeLabel.text = "VIP Guest Pass"
+            case .vendor :  entrantTypeLabel.text = "Vendor Pass"
             }
             
             // Set entrant accesses for display
