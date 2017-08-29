@@ -172,8 +172,13 @@ class ViewController: UIViewController, PassViewControllerDelegate {
         
         // Main menu
         case 1: navigation.main = .guest
+                navigation.sub = .freeChild
+                highlight(button: childButton, size: 16.0)
             
         case 2: navigation.main = .employee
+                navigation.sub = .foodService
+                highlight(button: foodServiceButton, size: 16.0)
+            
             
         case 3: navigation.main = .manager
                 navigation.sub  = .manager
