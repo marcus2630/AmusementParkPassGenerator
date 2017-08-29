@@ -59,6 +59,15 @@ class Entrant {
             guard profile?.birthday != nil  && profile?.birthday != "" else { throw ProfileError.InvalidData(data: "birthday") }
         }
         
+        if type == .vendor {
+            guard profile?.dateOfVisit != nil  && profile?.dateOfVisit != "" else { throw ProfileError.InvalidData(data: "date of visit") }
+            guard profile?.birthday != nil  && profile?.birthday != "" else { throw ProfileError.InvalidData(data: "birthday") }
+            guard profile?.firstName != nil && profile?.firstName != "" else { throw ProfileError.InvalidData(data: "firstname") }
+            guard profile?.lastName != nil && profile?.lastName != "" else { throw ProfileError.InvalidData(data: "lastname") }
+            guard profile?.company != nil && profile?.company != "" else { throw ProfileError.InvalidData(data: "company name") }
+            
+        }
+        
         self.type = type
         self.profile = profile
     }

@@ -111,10 +111,15 @@ class ViewController: UIViewController, PassViewControllerDelegate {
                         let profile = Profile(freeChildWithBirthday: dateOfBirth.text)
                         entrant = try Entrant(as: navigation.sub, withInformation: profile)
                     } else {
-                        let profile = Profile(firstName: firstName.text, lastName: lastName.text, street: streetAddress.text, city: city.text, state: state.text, zip: zipCodeAsInt, birthday: dateOfBirth.text)
+                        let profile = Profile(firstName: firstName.text, lastName: lastName.text, street: streetAddress.text, city: city.text, state: state.text, zip: zipCodeAsInt, birthday: dateOfBirth.text, visit: nil)
                         entrant = try Entrant(as: navigation.sub, withInformation: profile)
                     }
                     
+                }
+                
+                if navigation.main == .vendor {
+                    let profile = Profile(vendorWithCompany: company.text, birthday: dateOfBirth.text, visit: dateOfVisit.text, firstName: firstName.text, lastName: lastName.text)
+                     entrant = try Entrant(as: navigation.sub, withInformation: profile)
                 }
                 
                 if entrant != nil {
