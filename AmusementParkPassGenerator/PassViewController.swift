@@ -23,63 +23,27 @@ class PassViewController: UIViewController {
         
         guard let button = sender as? UIButton else { return }
         
-        switch button.tag {
-        case 1:
-            if entrant?.checkAccess(for: AreaAccess.office) == true {
-                resultLabel.text = "Access granted for office area."
-                makeResultsArea(color: .green)
-            } else {
-                resultLabel.text = "Access denied for office area."
-                makeResultsArea(color: .red)
+        var access: (access: Bool, message: String) = (false, "Couldn't check access for the specified criteria.")
+        
+        if let entrant = entrant {
+        
+            switch button.tag {
+                case 1: access = entrant.checkAccess(for: AreaAccess.office)
+                case 2: access = entrant.checkAccess(for: AreaAccess.kitchen)
+                case 3: access = entrant.checkAccess(for: AreaAccess.rideControl)
+                case 4: access = entrant.checkAccess(for: AreaAccess.amusement)
+                case 5: access = entrant.checkAccess(for: RideAccess.accessAllRides)
+                case 6: access = entrant.checkAccess(for: (Discounts)
+                case 7: access = entrant.checkAccess(for: Discounts)
+                case 8: access = entrant.checkAccess(for: AreaAccess.maintenance)
+        
+                default: break
             }
-        case 2:
-            if entrant?.checkAccess(for: AreaAccess.kitchen) == true {
-                resultLabel.text = "Access granted for kitchen area."
-                makeResultsArea(color: .green)
-            } else {
-                resultLabel.text = "Access denied for kitchen area."
-                makeResultsArea(color: .red)
-            }
-        case 3:
-            if entrant?.checkAccess(for: AreaAccess.rideControl) == true {
-                resultLabel.text = "Access granted for ride control area."
-                makeResultsArea(color: .green)
-            } else {
-                resultLabel.text = "Access denied for ride control area."
-                makeResultsArea(color: .red)
-            }
-        case 4:
-            if entrant?.checkAccess(for: AreaAccess.amusement) == true {
-                resultLabel.text = "Access granted for amusement area."
-                makeResultsArea(color: .green)
-            } else {
-                resultLabel.text = "Access denied for amusement area."
-                makeResultsArea(color: .red)
-            }
-        case 5:
-            if entrant?.checkAccess(for: RideAccess.accessAllRides) == true {
-                var output = "Pass grants access to all rides."
-                if entrant?.checkAccess(for: RideAccess.skipAllLines) == true {
-                    output += "\nPass is allowed to skip all lines."
-                }
-                makeResultsArea(color: .green)
-                resultLabel.text = output
-            } else {
-                resultLabel.text = "Pass grants no access to rides."
-                makeResultsArea(color: .red)
-            }
-        case 6: entrant?.checkAccess(for: AreaAccess.office)
-        case 7: entrant?.checkAccess(for: AreaAccess.office)
-        case 8:
-            if entrant?.checkAccess(for: AreaAccess.maintenance) == true {
-                resultLabel.text = "Access granted for maintenance area."
-                makeResultsArea(color: .green)
-            } else {
-                resultLabel.text = "Access denied for maintenance area."
-                makeResultsArea(color: .red)
-            }
-        default: break
         }
+        if access.access == true { makeResultsArea(color: .green) }
+        else { makeResultsArea(color: .red) }
+        
+        resultLabel.text = access.message
     }
     
     
@@ -152,56 +116,9 @@ class PassViewController: UIViewController {
             }
             
             // Set entrant accesses for display
-            var access: [String] = []
+            let description: String = ""
             
-            if entrant.checkAccess(for: AreaAccess.amusement) {
-                access.append("Access to amusements area.")
-            }
-            if entrant.checkAccess(for: AreaAccess.kitchen) {
-                access.append("Can access the kitchen.")
-            }
-            if entrant.checkAccess(for: AreaAccess.maintenance) {
-                access.append("Can access the maintenance areas.")
-            }
-            if entrant.checkAccess(for: AreaAccess.office) {
-                access.append("Can access the office.")
-            }
-            if entrant.checkAccess(for: AreaAccess.rideControl) {
-                access.append("Can access the ride-control area.")
-            }
-            if entrant.checkAccess(for: RideAccess.accessAllRides) {
-                access.append("Access to all rides.")
-            }
-            if entrant.checkAccess(for: RideAccess.skipAllLines) {
-                access.append("Can skip all lines.")
-            }
-            if entrant.checkAccess(for: DiscountAccess.discountOnFood10) {
-                access.append("Has 10% discount on food.")
-            }
-            if entrant.checkAccess(for: DiscountAccess.discountOnFood15) {
-                access.append("Has 15% discount on food.")
-            }
-            if entrant.checkAccess(for: DiscountAccess.discountOnFood20) {
-                access.append("Has 20% discount on food.")
-            }
-            if entrant.checkAccess(for: DiscountAccess.discountOnFood25) {
-                access.append("Has 25% discount on food.")
-            }
-            if entrant.checkAccess(for: DiscountAccess.discountOnMerchandise10) {
-                access.append("Has 10% discount on merchandise.")
-            }
-            if entrant.checkAccess(for: DiscountAccess.discountOnMerchandise15) {
-                access.append("Has 20% discount on merchandise.")
-            }
-            if entrant.checkAccess(for: DiscountAccess.discountOnMerchandise20) {
-                access.append("Has 15% discount on merchandise.")
-            }
-            if entrant.checkAccess(for: DiscountAccess.discountOnMerchandise25) {
-                access.append("Has 25% discount on merchandise.")
-            }
-            
-            
-            entrantPermissionsLabel.text = access.joined(separator: "\n")
+            entrantPermissionsLabel.text = description
             entrantPermissionsLabel.sizeToFit()
         }
         else { entrantNameLabel.text = "Anonymous" }

@@ -72,7 +72,7 @@ class Entrant {
         self.profile = profile
     }
     
-    func checkAccess(for access: Access) -> (access: Bool, message: String?) {
+    func checkAccess(for access: Access) -> (access: Bool, message: String) {
         
         // If access is of type AreaAccess and areaAccess contains access
         if let access = access as? AreaAccess {
@@ -123,7 +123,7 @@ class Entrant {
                 }
             }
         }
-        return (false, nil)
+        return (false, "Couldn't check the specified access criteria.")
     }
 }
 
