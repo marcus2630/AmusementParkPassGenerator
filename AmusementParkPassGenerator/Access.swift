@@ -36,8 +36,15 @@ enum RideAccess: Access {
 
 // Work around for now, individual cases
 
-enum DiscountAccess: Access {
-    case discountOnFood10, discountOnFood15, discountOnFood20, discountOnFood25
-    case discountOnMerchandise10, discountOnMerchandise15, discountOnMerchandise20, discountOnMerchandise25
+
+struct Discounts: Access {
+    let foodDiscount: Int?
+    let merchantDiscount: Int?
+
 }
+
+//enum DiscountAccess: Access {
+//    case discountOnFood10, discountOnFood15, discountOnFood20, discountOnFood25
+//    case discountOnMerchandise10, discountOnMerchandise15, discountOnMerchandise20, discountOnMerchandise25
+//}
 
