@@ -73,6 +73,10 @@ class ViewController: UIViewController, PassViewControllerDelegate {
     @IBOutlet weak var state: UITextField!
     @IBOutlet weak var zipCode: UITextField!
     
+    
+    
+    
+    
     @IBAction func populateData(_ sender: Any) {
         switch navigation.sub {
         case .foodService, .rideService, .maintenance, .manager:
@@ -83,6 +87,18 @@ class ViewController: UIViewController, PassViewControllerDelegate {
             city.text = "Copenhagen"
             state.text = "Sjaelland Island"
             zipCode.text = "1620"
+        case .freeChild:
+            dateOfBirth.text = "16-05-2005"
+        case .senior:
+            dateOfBirth.text = "05-12-1956"
+            firstName.text = "John"
+            lastName.text = "Smith"
+        case .vendor:
+            dateOfBirth.text = "24-03-1967"
+            dateOfVisit.text = "14-04-2017"
+            firstName.text = "Julie"
+            lastName.text = "Rosengaard"
+            company.text = "Treehouse Inc."
         default: break
         }
     }
@@ -101,7 +117,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
                 }
                 
                 
-                if navigation.main == .employee {
+                if navigation.main == .employee || navigation.main == .manager {
                     let profile = Profile(employeeWithFirstName: firstName.text, lastName: lastName.text, street: streetAddress.text, city: city.text, state: state.text, zip: zipCodeAsInt)
                     entrant = try Entrant(as: navigation.sub, withInformation: profile)
                 }
@@ -167,6 +183,8 @@ class ViewController: UIViewController, PassViewControllerDelegate {
         
         
         guard let button = sender as? UIButton else { return }
+        
+        clearFields()
         
         switch button.tag {
         
@@ -281,6 +299,20 @@ class ViewController: UIViewController, PassViewControllerDelegate {
     func highlight(button: UIButton, size: CGFloat) {
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont(name: "Kailasa-Bold", size: size)
+    }
+    
+    
+    func clearFields() {
+        dateOfBirth.text = nil
+        dateOfVisit.text = nil
+        project.text = nil
+        firstName.text = nil
+        lastName.text = nil
+        company.text = nil
+        streetAddress.text = nil
+        city.text = nil
+        state.text = nil
+        zipCode.text = nil
     }
     
     func updateButtonStyles() {

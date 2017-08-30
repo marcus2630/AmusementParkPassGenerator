@@ -752,7 +752,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="iHn-VK-kbm">
                                 <rect key="frame" x="20" y="622.5" width="728" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECJ-4w-bMz" userLabel="Office" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECJ-4w-bMz" userLabel="Office" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="152" height="50"/>
                                         <color key="backgroundColor" red="0.93740326166152954" green="0.92513066530227661" blue="0.94564527273178101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
@@ -764,8 +764,11 @@
                                                 <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="checkAccessEngaged:" destination="fNM-VH-D2s" eventType="touchUpInside" id="WPI-l0-Nnb"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Je-QH-3iJ" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Je-QH-3iJ" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
                                         <rect key="frame" x="192" y="0.0" width="152" height="50"/>
                                         <color key="backgroundColor" red="0.93740326169999999" green="0.92513066529999999" blue="0.94564527269999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
@@ -777,8 +780,11 @@
                                                 <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="checkAccessEngaged:" destination="fNM-VH-D2s" eventType="touchUpInside" id="02H-19-99N"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4WU-bY-DPX" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4WU-bY-DPX" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
                                         <rect key="frame" x="384" y="0.0" width="152" height="50"/>
                                         <color key="backgroundColor" red="0.93740326169999999" green="0.92513066529999999" blue="0.94564527269999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
@@ -790,8 +796,11 @@
                                                 <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="checkAccessEngaged:" destination="fNM-VH-D2s" eventType="touchUpInside" id="Dba-iT-4uQ"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEw-Vs-HVC" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEw-Vs-HVC" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
                                         <rect key="frame" x="576" y="0.0" width="152" height="50"/>
                                         <color key="backgroundColor" red="0.93740326169999999" green="0.92513066529999999" blue="0.94564527269999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
@@ -803,6 +812,9 @@
                                                 <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="checkAccessEngaged:" destination="fNM-VH-D2s" eventType="touchUpInside" id="SvO-Dp-Lmk"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -817,7 +829,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="i2g-vj-uKG">
                                 <rect key="frame" x="20" y="693" width="728" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Gf-th-EIf" userLabel="Office" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
+                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Gf-th-EIf" userLabel="Office" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="152" height="50"/>
                                         <color key="backgroundColor" red="0.93740326169999999" green="0.92513066529999999" blue="0.94564527269999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
@@ -829,8 +841,11 @@
                                                 <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="checkAccessEngaged:" destination="fNM-VH-D2s" eventType="touchUpInside" id="Cdk-QF-X4G"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLE-TX-Ho6" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
+                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLE-TX-Ho6" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
                                         <rect key="frame" x="192" y="0.0" width="152" height="50"/>
                                         <color key="backgroundColor" red="0.93740326169999999" green="0.92513066529999999" blue="0.94564527269999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
@@ -842,8 +857,11 @@
                                                 <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="checkAccessEngaged:" destination="fNM-VH-D2s" eventType="touchUpInside" id="T3S-kV-nER"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RjE-aR-rde" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
+                                    <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RjE-aR-rde" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
                                         <rect key="frame" x="384" y="0.0" width="152" height="50"/>
                                         <color key="backgroundColor" red="0.93740326169999999" green="0.92513066529999999" blue="0.94564527269999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
@@ -855,8 +873,11 @@
                                                 <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="checkAccessEngaged:" destination="fNM-VH-D2s" eventType="touchUpInside" id="tkX-wq-l01"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="px1-aA-9aJ" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
+                                    <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="px1-aA-9aJ" customClass="BorderRadiusAndWidth" customModule="AmusementParkPassGenerator" customModuleProvider="target">
                                         <rect key="frame" x="576" y="0.0" width="152" height="50"/>
                                         <color key="backgroundColor" red="0.93740326169999999" green="0.92513066529999999" blue="0.94564527269999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
@@ -868,6 +889,9 @@
                                                 <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="checkAccessEngaged:" destination="fNM-VH-D2s" eventType="touchUpInside" id="Mv2-Vd-4kD"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -879,7 +903,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHK-KI-tLK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test results" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHK-KI-tLK">
                                 <rect key="frame" x="20" y="763" width="728" height="96"/>
                                 <color key="backgroundColor" red="0.78093178781481842" green="0.76169701471593132" blue="0.80016656091370564" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -953,7 +977,7 @@
                         <outlet property="entrantNameLabel" destination="6BV-yV-IrV" id="2Kf-0h-pDF"/>
                         <outlet property="entrantPermissionsLabel" destination="x0q-lf-dk3" id="VJS-eX-hVI"/>
                         <outlet property="entrantTypeLabel" destination="mo5-UN-RZa" id="MGI-qd-Q8g"/>
-                        <outlet property="resultLabel" destination="MHK-KI-tLK" id="Udn-iI-Kav"/>
+                        <outlet property="resultLabel" destination="MHK-KI-tLK" id="khR-8b-n3G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BMg-ja-k2H" userLabel="First Responder" sceneMemberID="firstResponder"/>

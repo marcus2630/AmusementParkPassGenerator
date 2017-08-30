@@ -19,10 +19,78 @@ class PassViewController: UIViewController {
     
     @IBOutlet weak var resultLabel: UILabel!
     
+    @IBAction func checkAccessEngaged(_ sender: Any) {
+        
+        guard let button = sender as? UIButton else { return }
+        
+        switch button.tag {
+        case 1:
+            if entrant?.checkAccess(for: AreaAccess.office) == true {
+                resultLabel.text = "Access granted for office area."
+                makeResultsArea(color: .green)
+            } else {
+                resultLabel.text = "Access denied for office area."
+                makeResultsArea(color: .red)
+            }
+        case 2:
+            if entrant?.checkAccess(for: AreaAccess.kitchen) == true {
+                resultLabel.text = "Access granted for kitchen area."
+                makeResultsArea(color: .green)
+            } else {
+                resultLabel.text = "Access denied for kitchen area."
+                makeResultsArea(color: .red)
+            }
+        case 3:
+            if entrant?.checkAccess(for: AreaAccess.rideControl) == true {
+                resultLabel.text = "Access granted for ride control area."
+                makeResultsArea(color: .green)
+            } else {
+                resultLabel.text = "Access denied for ride control area."
+                makeResultsArea(color: .red)
+            }
+        case 4:
+            if entrant?.checkAccess(for: AreaAccess.amusement) == true {
+                resultLabel.text = "Access granted for amusement area."
+                makeResultsArea(color: .green)
+            } else {
+                resultLabel.text = "Access denied for amusement area."
+                makeResultsArea(color: .red)
+            }
+        case 5:
+            if entrant?.checkAccess(for: RideAccess.accessAllRides) == true {
+                var output = "Pass grants access to all rides."
+                if entrant?.checkAccess(for: RideAccess.skipAllLines) == true {
+                    output += "\nPass is allowed to skip all lines."
+                }
+                makeResultsArea(color: .green)
+                resultLabel.text = output
+            } else {
+                resultLabel.text = "Pass grants no access to rides."
+                makeResultsArea(color: .red)
+            }
+        case 6: entrant?.checkAccess(for: AreaAccess.office)
+        case 7: entrant?.checkAccess(for: AreaAccess.office)
+        case 8: entrant?.checkAccess(for: AreaAccess.office)
+        default: break
+        }
+    }
     
     
     var delegate: PassViewControllerDelegate! = nil
     
+    enum resultsLabelColors {
+        case green
+        case red
+    }
+    
+    func makeResultsArea(color: resultsLabelColors) {
+        resultLabel.textColor = UIColor.white
+        switch color {
+        case .green: resultLabel.backgroundColor = UIColor(red: 141/255.0, green: 188/255.0, blue: 160/255.0, alpha: 1.0)
+        case .red: resultLabel.backgroundColor = UIColor(red: 181/255.0, green: 106/255.0, blue: 117/255.0, alpha: 1.0)
+            
+        }
+    }
     
     // This one seems empty even after segue
     var entrant: Entrant? = nil
