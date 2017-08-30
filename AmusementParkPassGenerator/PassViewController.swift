@@ -70,7 +70,14 @@ class PassViewController: UIViewController {
             }
         case 6: entrant?.checkAccess(for: AreaAccess.office)
         case 7: entrant?.checkAccess(for: AreaAccess.office)
-        case 8: entrant?.checkAccess(for: AreaAccess.office)
+        case 8:
+            if entrant?.checkAccess(for: AreaAccess.maintenance) == true {
+                resultLabel.text = "Access granted for maintenance area."
+                makeResultsArea(color: .green)
+            } else {
+                resultLabel.text = "Access denied for maintenance area."
+                makeResultsArea(color: .red)
+            }
         default: break
         }
     }
