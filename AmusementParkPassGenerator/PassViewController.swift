@@ -33,7 +33,7 @@ class PassViewController: UIViewController {
                 case 3: access = entrant.checkAccess(for: AreaAccess.rideControl)
                 case 4: access = entrant.checkAccess(for: AreaAccess.amusement)
                 case 5: access = entrant.checkAccess(for: RideAccess.accessAllRides)
-                case 6: access = entrant.checkAccess(for: (Discounts)
+                case 6: access = entrant.checkAccess(for: Discounts)
                 case 7: access = entrant.checkAccess(for: Discounts)
                 case 8: access = entrant.checkAccess(for: AreaAccess.maintenance)
         
