@@ -72,37 +72,58 @@ class Entrant {
         self.profile = profile
     }
     
-    func checkAccess(for access: Access) -> Bool {
+    func checkAccess(for access: Access) -> (Bool, String?) {
         
         // If access is of type AreaAccess and areaAccess contains access
         if let access = access as? AreaAccess {
             if areaAccess.contains(access) {
-                return true
+                switch access {
+                case .amusement: return (true, "Access granted for amusement area.")
+                case .kitchen: return (true, "Access granted for kitchen area.")
+                case .maintenance: return (true, "Access granted for maintenence area.")
+                case .office: return (true, "Access granted for office areas.")
+                case .rideControl: return (true, "Access granted for ride control areas.")
+                }
             } else {
-                return false
+                switch access {
+                case .amusement: return (false, "Access denied for amusement area.")
+                case .kitchen: return (false, "Access denied for kitchen area.")
+                case .maintenance: return (false, "Access denied for maintenence area.")
+                case .office: return (false, "Access denied for office areas.")
+                case .rideControl: return (false, "Access denied for ride control areas.")
+                }
             }
         }
         
-        // If access is of type DiscountAccess and discountAccess contains access
-        if let access = access as? DiscountAccess {
-            if let discountAccess = discountAccess {
-                if discountAccess.contains(access) {
-                    return true
-                } else {
-                    return false
-                }
+        if access is  Discounts {
+            var output: String = ""
+            // If access is of type DiscountAccess and discountAccess contains access
+            if  let foodDiscount = discountAccess?.foodDiscount {
+                output += "This pass has a \(foodDiscount)% discount on food."
             }
+            if  let merchantDiscount = discountAccess?.merchantDiscount {
+                output += "\nThis pass has a \(merchantDiscount)% discount on merchandise."
+            }
+            return (true, output)
         }
         
         // If access is of type RideAccess and rideAccess contains access
         if let access = access as? RideAccess {
             if rideAccess.contains(access) {
-                return true
+                switch access {
+                case .accessAllRides: return (true, "Pass grants access to all rides.")
+                case .skipAllLines: return (true, "Guest may skip the lines.")
+                case .seeEntrantAccessRules: return (true, "May see guests access rules.")
+                }
             } else {
-                return false
+                switch access {
+                case .accessAllRides: return (false, "Pass does NOT grant access to rides.")
+                case .skipAllLines: return (false, "Guest may NOT skip the lines.")
+                case .seeEntrantAccessRules: return (false, "Is not allowed to see guests access rules.")
+                }
             }
         }
-        return false
+        return (false, nil)
     }
 }
 
@@ -128,22 +149,22 @@ extension Entrant {
         return areas
     }
     
-    var discountAccess: [DiscountAccess]? {
-        var discounts: [DiscountAccess]?
+    var discountAccess: Discounts? {
+        var discounts: Discounts?
         switch type {
         
         // Employee
         case .foodService,
              .maintenance,
-             .rideService:          discounts = [.discountOnFood15, .discountOnMerchandise25]
-        case .manager:              discounts = [.discountOnFood25, .discountOnMerchandise25]
+             .rideService:          discounts = Discounts(foodDiscount: 15, merchantDiscount: 15)
+        case .manager:              discounts = Discounts(foodDiscount: 25, merchantDiscount: 25)
         
         // Guest
         case .classic,
              .freeChild,
              .vendor:               discounts = nil
-        case .vip:                     discounts = [.discountOnFood10, .discountOnMerchandise20]
-        case .senior:                  discounts = [.discountOnFood10, .discountOnMerchandise10]
+        case .vip:                     discounts = Discounts(foodDiscount: 10, merchantDiscount: 20)
+        case .senior:                  discounts = Discounts(foodDiscount: 10, merchantDiscount: 10)
         }
         return discounts
     }
