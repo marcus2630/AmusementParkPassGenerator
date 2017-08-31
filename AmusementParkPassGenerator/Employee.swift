@@ -72,7 +72,7 @@ class Entrant {
         self.profile = profile
     }
     
-    func checkAccess(for access: Access) -> (access: Bool, message: String) {
+    func checkAccess(for access: Access?) -> (access: Bool, message: String) {
         
         // If access is of type AreaAccess and areaAccess contains access
         if let access = access as? AreaAccess {
@@ -95,17 +95,32 @@ class Entrant {
             }
         }
         
-        if access is  Discounts {
+        if access is  Discounts? {
+            
             var output: String = ""
-            // If access is of type DiscountAccess and discountAccess contains access
-            if  let foodDiscount = discountAccess?.foodDiscount {
-                output += "This pass has a \(foodDiscount)% discount on food."
+            
+            if let discounts = discountAccess {
+            
+                    // If access is of type DiscountAccess and discountAccess contains access
+                    if  let foodDiscount = discounts.foodDiscount {
+                        output += "This pass has a \(foodDiscount)% discount on food."
+                    } else {
+                        output += "This pass has no discount on food."
+                    }
+                
+                    if  let merchantDiscount = discounts.merchantDiscount {
+                        output += "\nThis pass has a \(merchantDiscount)% discount on merchandise."
+                    } else {
+                        output += "This pass has no discount on merchandise."
+                    }
+        
+                    return (true, output)
+                
+            } else {
+                return (false, "This pass has no discounts")
             }
-            if  let merchantDiscount = discountAccess?.merchantDiscount {
-                output += "\nThis pass has a \(merchantDiscount)% discount on merchandise."
-            }
-            return (true, output)
         }
+        
         
         // If access is of type RideAccess and rideAccess contains access
         if let access = access as? RideAccess {
@@ -123,7 +138,9 @@ class Entrant {
                 }
             }
         }
+        print("discount was run")
         return (false, "Couldn't check the specified access criteria.")
+        
     }
 }
 
