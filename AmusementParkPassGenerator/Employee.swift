@@ -97,24 +97,17 @@ class Entrant {
         
         if access is  Discounts? {
             
-            var output: String = ""
-            
-            if let discounts = discountAccess {
+                        if let discounts = discountAccess {
             
                     // If access is of type DiscountAccess and discountAccess contains access
                     if  let foodDiscount = discounts.foodDiscount {
-                        output += "This pass has a \(foodDiscount)% discount on food."
-                    } else {
-                        output += "This pass has no discount on food."
+                        return (false, "This pass has a \(foodDiscount)% discount on food.")
                     }
                 
                     if  let merchantDiscount = discounts.merchantDiscount {
-                        output += "\nThis pass has a \(merchantDiscount)% discount on merchandise."
-                    } else {
-                        output += "This pass has no discount on merchandise."
+                        return (false, "\nThis pass has a \(merchantDiscount)% discount on merchandise.")
                     }
-        
-                    return (true, output)
+
                 
             } else {
                 return (false, "This pass has no discounts")
@@ -152,7 +145,7 @@ extension Entrant {
         
         // Employee
         switch type {
-        case .foodService, .vendor: areas = [.amusement, .kitchen]
+        case .foodService, .vendor, .contractor: areas = [.amusement, .kitchen]
         case .rideService:          areas = [.amusement, .rideControl]
         case .maintenance:          areas = [.amusement, .kitchen, .maintenance, .rideControl]
         case .manager:              areas = [.amusement, .kitchen, .maintenance, .office, .rideControl]
@@ -179,7 +172,8 @@ extension Entrant {
         // Guest
         case .classic,
              .freeChild,
-             .vendor:               discounts = nil
+             .vendor,
+            .contractor:               discounts = nil
         case .vip:                     discounts = Discounts(foodDiscount: 10, merchantDiscount: 20)
         case .senior:                  discounts = Discounts(foodDiscount: 10, merchantDiscount: 10)
         }
@@ -201,7 +195,7 @@ extension Entrant {
         case    .classic,
                 .freeChild:         rides = [.accessAllRides]
         case    .vip, .senior:      rides = [.accessAllRides, .skipAllLines]
-        case .vendor:               rides = [.seeEntrantAccessRules]
+        case .vendor, .contractor:               rides = [.seeEntrantAccessRules]
         }
         return rides
     }

@@ -12,7 +12,7 @@ import UIKit
 /* NAVIGATION
 -----------------------------*/
 enum MainNavigation {
-    case guest, employee, manager, vendor
+    case guest, employee, manager, vendor, contractor
 }
 
 enum SubNavigation {
@@ -49,6 +49,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
     @IBOutlet weak var employeeButton: UIButton!
     @IBOutlet weak var managerButton: UIButton!
     @IBOutlet weak var vendorButton: UIButton!
+    @IBOutlet weak var contractorButton: UIButton!
     
     // Guest navigation buttons
     @IBOutlet weak var childButton: UIButton!
@@ -203,6 +204,8 @@ class ViewController: UIViewController, PassViewControllerDelegate {
             
         case 4: navigation.main = .vendor
                 navigation.sub  = .vendor
+        case 12: navigation.main = .contractor
+                 navigation.sub = .contractor
             
         // Guest menu
         case 5: navigation.sub = .freeChild
@@ -243,6 +246,9 @@ class ViewController: UIViewController, PassViewControllerDelegate {
             employeeSubMenu.isHidden = true
             
         case .vendor :
+            guestSubMenu.isHidden = true
+            employeeSubMenu.isHidden = true
+        case .contractor :
             guestSubMenu.isHidden = true
             employeeSubMenu.isHidden = true
         }
@@ -329,6 +335,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
         case .employee :    highlight(button: employeeButton, size: 19.0)
         case .vendor :      highlight(button: vendorButton, size: 19.0)
         case .manager :     highlight(button: managerButton, size: 19.0)
+        case .contractor:   highlight(button: contractorButton, size: 19.0)
         }
         switch navigation.sub {
         case .freeChild:    highlight(button: childButton, size: 16.0)
@@ -340,6 +347,8 @@ class ViewController: UIViewController, PassViewControllerDelegate {
         case .manager :     highlight(button: managerButton, size: 19.0)
         case .maintenance:   highlight(button: maintenanceButton, size: 16.0)
         case .vendor :      highlight(button: vendorButton, size: 19.0)
+            
+        case .contractor:   highlight(button: contractorButton, size: 19.0)
         
         }
     }
@@ -359,6 +368,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
                              employeeButton,
                              managerButton,
                              vendorButton,
+                             contractorButton,
                              
                              // Guest nav
                              childButton,

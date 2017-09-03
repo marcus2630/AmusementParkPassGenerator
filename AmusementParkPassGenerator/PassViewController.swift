@@ -98,7 +98,6 @@ class PassViewController: UIViewController {
                 
                 if entrant.profile?.firstName == "" {
                     entrantNameLabel.text = "Anonymous"
-                    print("nil=")
                 }
             }
             
@@ -113,12 +112,23 @@ class PassViewController: UIViewController {
             case .senior: entrantTypeLabel.text = "Senior Guest Pass"
             case .vip: entrantTypeLabel.text = "VIP Guest Pass"
             case .vendor :  entrantTypeLabel.text = "Vendor Pass"
+            case .contractor: entrantTypeLabel.text = "Contract Employee"
             }
             
             // Set entrant accesses for display
-            let description: String = ""
+            var accesses: [String] = []
             
-            entrantPermissionsLabel.text = description
+            let rules: [Access] = [ AreaAccess.amusement, AreaAccess.kitchen, AreaAccess.maintenance, AreaAccess.office, AreaAccess.rideControl,
+                                    RideAccess.accessAllRides, RideAccess.seeEntrantAccessRules, RideAccess.skipAllLines
+            ]
+            
+            for access in rules {
+                let rule = entrant.checkAccess(for: access)
+                if rule.access == true { accesses.append(rule.message) }
+            }
+            
+            
+            entrantPermissionsLabel.text = accesses.joined(separator: "\n")
             entrantPermissionsLabel.sizeToFit()
         }
         else { entrantNameLabel.text = "Anonymous" }
