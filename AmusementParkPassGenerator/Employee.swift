@@ -19,30 +19,30 @@ class Entrant {
             type == .manager ||
             type == .rideService {
             
-        // Guard that all profile requirements are filled
-        guard profile?.firstName != nil && profile?.firstName != "" else {
-            throw ProfileError.InvalidData(data: "first name")
-        }
-        
-        guard profile?.lastName != nil && profile?.lastName != "" else {
-            throw ProfileError.InvalidData(data: "last name")
-        }
-        
-        guard profile?.city != nil && profile?.city != "" else {
-            throw ProfileError.InvalidData(data: "city")
-        }
-        
-        guard profile?.state != nil && profile?.state != "" else {
-            throw ProfileError.InvalidData(data: "state")
-        }
-        
-        guard profile?.street != nil && profile?.street != "" else {
-            throw ProfileError.InvalidData(data: "street address")
-        }
-        
-        guard profile?.zip != nil else {
-            throw ProfileError.InvalidData(data: "zip code")
-        }
+            // Guard that all profile requirements are filled
+            guard profile?.firstName != nil && profile?.firstName != "" else {
+                throw ProfileError.InvalidData(data: "first name")
+            }
+            
+            guard profile?.lastName != nil && profile?.lastName != "" else {
+                throw ProfileError.InvalidData(data: "last name")
+            }
+            
+            guard profile?.city != nil && profile?.city != "" else {
+                throw ProfileError.InvalidData(data: "city")
+            }
+            
+            guard profile?.state != nil && profile?.state != "" else {
+                throw ProfileError.InvalidData(data: "state")
+            }
+            
+            guard profile?.street != nil && profile?.street != "" else {
+                throw ProfileError.InvalidData(data: "street address")
+            }
+            
+            guard profile?.zip != nil else {
+                throw ProfileError.InvalidData(data: "zip code")
+            }
             
             
         }
@@ -95,21 +95,33 @@ class Entrant {
             }
         }
         
-        if access is  Discounts? {
+        if access is Discounts? {
             
-                        if let discounts = discountAccess {
-            
-                    // If access is of type DiscountAccess and discountAccess contains access
-                    if  let foodDiscount = discounts.foodDiscount {
-                        return (false, "This pass has a \(foodDiscount)% discount on food.")
-                    }
+            if let discounts = discountAccess {
                 
-                    if  let merchantDiscount = discounts.merchantDiscount {
-                        return (false, "\nThis pass has a \(merchantDiscount)% discount on merchandise.")
+                
+                // If access is of type DiscountAccess and discountAccess contains access
+                if  let foodDiscount = discounts.foodDiscount {
+                    
+                    // If there's also a merchant discount
+                    if let merchantDiscount = discounts.merchantDiscount {
+                        return (true, "This pass has a \(merchantDiscount)% discount on merchandise.\nThis pass also has a \(foodDiscount)% discount on food.")
                     }
-
+                    
+                    // Else if only food discount
+                    return (true, "This pass has a \(foodDiscount)% discount on food.")
+                    
+                } else {
+                    
+                    // Else if only merchant discount
+                    if let merchantDiscount = discounts.merchantDiscount {
+                        return (true, "This pass has a \(merchantDiscount)% discount on merchandise.")
+                    }
+                }
                 
             } else {
+                
+                // If no discounts at all
                 return (false, "This pass has no discounts")
             }
         }
@@ -149,7 +161,7 @@ extension Entrant {
         case .rideService:          areas = [.amusement, .rideControl]
         case .maintenance:          areas = [.amusement, .kitchen, .maintenance, .rideControl]
         case .manager:              areas = [.amusement, .kitchen, .maintenance, .office, .rideControl]
-        
+            
         // Guest
         case .classic,
              .vip,
@@ -162,18 +174,18 @@ extension Entrant {
     var discountAccess: Discounts? {
         var discounts: Discounts?
         switch type {
-        
+            
         // Employee
         case .foodService,
              .maintenance,
              .rideService:          discounts = Discounts(foodDiscount: 15, merchantDiscount: 15)
         case .manager:              discounts = Discounts(foodDiscount: 25, merchantDiscount: 25)
-        
+            
         // Guest
         case .classic,
              .freeChild,
              .vendor,
-            .contractor:               discounts = nil
+             .contractor:               discounts = nil
         case .vip:                     discounts = Discounts(foodDiscount: 10, merchantDiscount: 20)
         case .senior:                  discounts = Discounts(foodDiscount: 10, merchantDiscount: 10)
         }
@@ -190,7 +202,7 @@ extension Entrant {
              .maintenance,
              .rideService,
              .manager:          rides = [.accessAllRides]
-        
+            
         // Guest
         case    .classic,
                 .freeChild:         rides = [.accessAllRides]
