@@ -170,10 +170,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
                 // Switch on entrant / nagivation types
                 switch navigation.main {
                     
-                case .employee:
-                    profile = Profile(employeeWithFirstName: firstName.text, lastName: lastName.text, street: streetAddress.text, city: city.text, state: state.text, zip: zipCodeAsInt)
-
-                case .manager:
+                case .employee, .manager:
                     profile = Profile(employeeWithFirstName: firstName.text, lastName: lastName.text, street: streetAddress.text, city: city.text, state: state.text, zip: zipCodeAsInt)
                     
                 case .vendor:
