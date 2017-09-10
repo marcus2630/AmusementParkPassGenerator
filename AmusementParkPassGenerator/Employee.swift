@@ -137,41 +137,37 @@ extension Entrant {
     
     // Compute accesses according to chosen employee type
     var areaAccess: [AreaAccess] {
+        
         var areas: [AreaAccess]
         
-        // Employee
         switch type {
-        case .foodService, .vendor, .contractor: areas = [.amusement, .kitchen]
-        case .rideService:          areas = [.amusement, .rideControl]
-        case .maintenance:          areas = [.amusement, .kitchen, .maintenance, .rideControl]
-        case .manager:              areas = [.amusement, .kitchen, .maintenance, .office, .rideControl]
+        
+        // Employee
+        case .foodService, .vendor, .contractor:        areas = [.amusement, .kitchen]
+        case .rideService:                              areas = [.amusement, .rideControl]
+        case .maintenance:                              areas = [.amusement, .kitchen, .maintenance, .rideControl]
+        case .manager:                                  areas = [.amusement, .kitchen, .maintenance, .office, .rideControl]
             
         // Guest
-        case .classic,
-             .vip,
-             .senior,
-             .freeChild:              areas = [.amusement]
+        case .classic, .vip, .senior, .freeChild:       areas = [.amusement]
+            
         }
         return areas
     }
     
     var discountAccess: Discounts? {
+        
         var discounts: Discounts?
         switch type {
             
         // Employee
-        case .foodService,
-             .maintenance,
-             .rideService:          discounts = Discounts(foodDiscount: 15, merchantDiscount: 15)
-        case .manager:              discounts = Discounts(foodDiscount: 25, merchantDiscount: 25)
+        case .foodService, .maintenance, .rideService:      discounts = Discounts(foodDiscount: 15, merchantDiscount: 15)
+        case .manager:                                      discounts = Discounts(foodDiscount: 25, merchantDiscount: 25)
             
         // Guest
-        case .classic,
-             .freeChild,
-             .vendor,
-             .contractor:               discounts = nil
-        case .vip:                     discounts = Discounts(foodDiscount: 10, merchantDiscount: 20)
-        case .senior:                  discounts = Discounts(foodDiscount: 10, merchantDiscount: 10)
+        case .classic, .freeChild, .vendor, .contractor:    discounts = nil
+        case .vip:                                          discounts = Discounts(foodDiscount: 10, merchantDiscount: 20)
+        case .senior:                                       discounts = Discounts(foodDiscount: 10, merchantDiscount: 10)
         }
         return discounts
     }
@@ -182,17 +178,14 @@ extension Entrant {
         switch type {
             
         // Employee
-        case .foodService,
-             .maintenance,
-             .rideService,
-             .manager:          rides = [.accessAllRides]
+        case .foodService, .maintenance, .rideService, .manager:    rides = [.accessAllRides]
             
         // Guest
-        case    .classic,
-                .freeChild:         rides = [.accessAllRides]
-        case    .vip, .senior:      rides = [.accessAllRides, .skipAllLines]
-        case .vendor, .contractor:               rides = [.seeEntrantAccessRules]
+        case    .classic, .freeChild:                               rides = [.accessAllRides]
+        case    .vip, .senior:                                      rides = [.accessAllRides, .skipAllLines]
+        case .vendor, .contractor:                                  rides = [.seeEntrantAccessRules]
         }
+        
         return rides
     }
     
