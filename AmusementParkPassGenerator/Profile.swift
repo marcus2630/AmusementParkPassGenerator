@@ -10,6 +10,7 @@ import Foundation
 
 enum ProfileError: Error {
     case InvalidData(data: String)
+    case ExpectedNumeric(data: String)
 }
 
 
