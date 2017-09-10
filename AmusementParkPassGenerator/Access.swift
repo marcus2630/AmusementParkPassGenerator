@@ -28,23 +28,10 @@ enum RideAccess: Access {
     case seeEntrantAccessRules
 }
 
-// Having associated values on enum when casting to it gives error: Cannot convert type foo to argument type '_NilOptionalComparisonType'
-//    enum DiscountAccess {
-//    case discountOnFood(percent)
-//    case discountOnMerchandise(percent)
-//      }
-
-// Work around for now, individual cases
-
 
 struct Discounts: Access {
     let foodDiscount: Int?
     let merchantDiscount: Int?
 
 }
-
-//enum DiscountAccess: Access {
-//    case discountOnFood10, discountOnFood15, discountOnFood20, discountOnFood25
-//    case discountOnMerchandise10, discountOnMerchandise15, discountOnMerchandise20, discountOnMerchandise25
-//}
 

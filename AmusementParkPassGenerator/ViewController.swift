@@ -319,7 +319,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
     
     
     
-    /* HELPER FUNCTIONS {
+    /* HELPER FUNCTIONS 
      -----------------------------*/
     
     func convertTextFieldToInt(value: UITextField) throws -> Int? {
@@ -473,7 +473,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
         }
     }
     
-    /*  } ---------------------- */
+    /*----------------------*/
 
 }
 
