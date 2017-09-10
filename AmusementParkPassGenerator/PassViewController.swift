@@ -63,7 +63,6 @@ class PassViewController: UIViewController {
         }
     }
     
-    // This one seems empty even after segue
     var entrant: Entrant? = nil
     
 

@@ -14,59 +14,43 @@ class Entrant {
     
     init(as type: EntrantType, withInformation profile: Profile?) throws {
         
-        if  type == .foodService ||
-            type == .maintenance ||
-            type == .manager ||
-            type == .rideService {
+        
+        switch type {
+        case .foodService, .maintenance, .manager, .rideService:
             
             // Guard that all profile requirements are filled
-            guard profile?.firstName != nil && profile?.firstName != "" else {
-                throw ProfileError.InvalidData(data: "first name")
-            }
-            
-            guard profile?.lastName != nil && profile?.lastName != "" else {
-                throw ProfileError.InvalidData(data: "last name")
-            }
-            
-            guard profile?.city != nil && profile?.city != "" else {
-                throw ProfileError.InvalidData(data: "city")
-            }
-            
-            guard profile?.state != nil && profile?.state != "" else {
-                throw ProfileError.InvalidData(data: "state")
-            }
-            
-            guard profile?.street != nil && profile?.street != "" else {
-                throw ProfileError.InvalidData(data: "street address")
-            }
-            
-            guard profile?.zip != nil else {
-                throw ProfileError.InvalidData(data: "zip code")
-            }
+            guard profile?.firstName != nil && profile?.firstName != ""     else { throw ProfileError.InvalidData(data: "first name")}
+            guard profile?.lastName != nil && profile?.lastName != ""       else { throw ProfileError.InvalidData(data: "last name")}
+            guard profile?.city != nil && profile?.city != ""               else { throw ProfileError.InvalidData(data: "city")}
+            guard profile?.state != nil && profile?.state != ""             else { throw ProfileError.InvalidData(data: "state")}
+            guard profile?.street != nil && profile?.street != ""           else { throw ProfileError.InvalidData(data: "street address")}
+            guard profile?.zip != nil                                       else { throw ProfileError.InvalidData(data: "zip code")}
             
             
+        case .freeChild:
+            
+            guard profile?.birthday != nil && profile?.birthday != ""       else { throw ProfileError.InvalidData(data: "birthday")}
+            
+            
+        case .senior:
+            
+            guard profile?.firstName != nil && profile?.firstName != ""     else { throw ProfileError.InvalidData(data: "firstname")}
+            guard profile?.lastName != nil && profile?.lastName != ""       else { throw ProfileError.InvalidData(data: "lastname")}
+            guard profile?.birthday != nil  && profile?.birthday != ""      else { throw ProfileError.InvalidData(data: "birthday")}
+            
+            
+        case .vendor:
+            
+            guard profile?.dateOfVisit != nil  && profile?.dateOfVisit != ""    else { throw ProfileError.InvalidData(data: "date of visit")}
+            guard profile?.birthday != nil  && profile?.birthday != ""          else { throw ProfileError.InvalidData(data: "birthday")}
+            guard profile?.firstName != nil && profile?.firstName != ""         else { throw ProfileError.InvalidData(data: "firstname")}
+            guard profile?.lastName != nil && profile?.lastName != ""           else { throw ProfileError.InvalidData(data: "lastname")}
+            guard profile?.company != nil && profile?.company != ""             else { throw ProfileError.InvalidData(data: "company name")}
+            
+            
+        default: break
         }
         
-        if type == .freeChild {
-            guard profile?.birthday != nil && profile?.birthday != "" else {
-                throw ProfileError.InvalidData(data: "birthday")
-            }
-        }
-        
-        if type == .senior {
-            guard profile?.firstName != nil && profile?.firstName != "" else { throw ProfileError.InvalidData(data: "firstname") }
-            guard profile?.lastName != nil && profile?.lastName != "" else { throw ProfileError.InvalidData(data: "lastname") }
-            guard profile?.birthday != nil  && profile?.birthday != "" else { throw ProfileError.InvalidData(data: "birthday") }
-        }
-        
-        if type == .vendor {
-            guard profile?.dateOfVisit != nil  && profile?.dateOfVisit != "" else { throw ProfileError.InvalidData(data: "date of visit") }
-            guard profile?.birthday != nil  && profile?.birthday != "" else { throw ProfileError.InvalidData(data: "birthday") }
-            guard profile?.firstName != nil && profile?.firstName != "" else { throw ProfileError.InvalidData(data: "firstname") }
-            guard profile?.lastName != nil && profile?.lastName != "" else { throw ProfileError.InvalidData(data: "lastname") }
-            guard profile?.company != nil && profile?.company != "" else { throw ProfileError.InvalidData(data: "company name") }
-            
-        }
         
         self.type = type
         self.profile = profile
