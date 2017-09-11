@@ -150,7 +150,6 @@ extension Entrant {
             
         // Guest
         case .classic, .vip, .senior, .freeChild:       areas = [.amusement]
-            
         }
         return areas
     }
