@@ -11,6 +11,7 @@ import Foundation
 enum ProfileError: Error {
     case InvalidData(data: String)
     case ExpectedNumeric(data: String)
+    case InvalidAge(data: String)
 }
 
 

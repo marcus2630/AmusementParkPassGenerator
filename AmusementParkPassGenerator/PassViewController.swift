@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 protocol PassViewControllerDelegate {}
 
@@ -18,6 +19,9 @@ class PassViewController: UIViewController {
     @IBOutlet weak var entrantPermissionsLabel: UILabel!
     
     @IBOutlet weak var resultLabel: UILabel!
+    
+    var fail: SystemSoundID = 1
+    var success: SystemSoundID = 2
     
     @IBAction func checkAccessEngaged(_ sender: Any) {
         
@@ -40,8 +44,14 @@ class PassViewController: UIViewController {
                 default: break
             }
         }
-        if access.access == true { makeResultsArea(color: .green) }
-        else { makeResultsArea(color: .red) }
+        if access.access == true {
+            makeResultsArea(color: .green)
+            AudioServicesPlaySystemSound(success)
+        }
+        else {
+            makeResultsArea(color: .red)
+            AudioServicesPlaySystemSound(fail)
+        }
         
         resultLabel.text = access.message
     }
@@ -71,6 +81,9 @@ class PassViewController: UIViewController {
     }
     override func viewDidLoad() {
         
+        loadSuccessSound()
+        loadFailSound()
+        
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -83,6 +96,30 @@ class PassViewController: UIViewController {
         // entrant is empty
         if let entrant = entrant {
         
+            
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy/MM/dd"
+            
+            if let profile = entrant.profile {
+                
+                if let birthday = profile.birthday {
+                
+                    let formattedDate = formatter.date(from: birthday)
+                    
+                    if let formattedDate = formattedDate {
+                    
+                        
+                        if (formattedDate.countDaysTo(date: Date(timeIntervalSinceNow: 0))-1) == 5*365 {
+                            makeResultsArea(color: .green)
+                            resultLabel.text = "It's this childs birthday!\n Wish him a happy birthday!"
+                        }
+                    }
+
+
+                }
+            }
+            
             
             // Set profile information for display if added
             if let profile = entrant.profile {
@@ -139,6 +176,15 @@ class PassViewController: UIViewController {
     }
     
 
+    func loadSuccessSound() {
+        let soundUrl = Bundle.main.url(forResource: "AccessDenied", withExtension: "wav")
+        AudioServicesCreateSystemSoundID(soundUrl as! CFURL, &fail)
+    }
+    func loadFailSound() {
+        let soundUrl = Bundle.main.url(forResource: "AccessGranted", withExtension: "wav")
+        AudioServicesCreateSystemSoundID(soundUrl as! CFURL, &success)
+    }
+    
     /*
     // MARK: - Navigation
 

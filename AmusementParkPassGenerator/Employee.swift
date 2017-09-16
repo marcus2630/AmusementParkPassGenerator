@@ -29,7 +29,29 @@ class Entrant {
             
         case .freeChild:
             
-            guard profile?.birthday != nil && profile?.birthday != ""       else { throw ProfileError.InvalidData(data: "birthday")}
+            if let birthday = profile?.birthday {
+                if birthday != "" {
+                    
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy/MM/dd"
+                    
+                    let formattedDate = formatter.date(from: birthday)
+                    
+                    if let formattedDate = formattedDate {
+                    
+                        print(formattedDate.countDaysTo(date: Date(timeIntervalSinceNow: 0))-1)
+                        if (formattedDate.countDaysTo(date: Date(timeIntervalSinceNow: 0)))-1 > 5*365 {
+                            print("Duuh!")
+                            throw ProfileError.InvalidAge(data: String(describing: birthday))
+                        }
+                    }
+                    
+                } else { throw ProfileError.InvalidData(data: "birthday")}
+                
+            } else { throw ProfileError.InvalidData(data: "birthday")}
+            
+            
+
             
             
         case .senior:

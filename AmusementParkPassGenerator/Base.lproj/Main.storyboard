@@ -694,12 +694,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yXX-nD-ohN">
                                 <rect key="frame" x="20" y="91" width="728" height="355"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileIndent" translatesAutoresizingMaskIntoConstraints="NO" id="3k9-0u-Amr">
-                                        <rect key="frame" x="314" y="8" width="100" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="5hi-dp-d2N"/>
-                                        </constraints>
-                                    </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="FaceImageAsset" translatesAutoresizingMaskIntoConstraints="NO" id="RY0-Sg-9he">
                                         <rect key="frame" x="54" y="72" width="210" height="210"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -734,8 +728,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="3k9-0u-Amr" firstAttribute="top" secondItem="yXX-nD-ohN" secondAttribute="top" constant="8" id="5T8-g9-T1Z"/>
-                                    <constraint firstItem="3k9-0u-Amr" firstAttribute="centerX" secondItem="yXX-nD-ohN" secondAttribute="centerX" id="Bfb-XQ-0Ve"/>
                                     <constraint firstAttribute="height" constant="355" id="sr1-Mr-7BA"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -1001,6 +993,5 @@
     </scenes>
     <resources>
         <image name="FaceImageAsset" width="204" height="198"/>
-        <image name="ProfileIndent" width="110" height="32"/>
     </resources>
 </document>

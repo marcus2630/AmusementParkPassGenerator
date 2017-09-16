@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 
 /* NAVIGATION
@@ -76,6 +77,9 @@ class ViewController: UIViewController, PassViewControllerDelegate {
     @IBOutlet weak var state: UITextField!
     @IBOutlet weak var zipCode: UITextField!
     
+    var fail: SystemSoundID = 1
+    var success: SystemSoundID = 2
+    
     
     
     /* Prepare for segue
@@ -106,33 +110,74 @@ class ViewController: UIViewController, PassViewControllerDelegate {
     
     /*-----------------------------*/
     
+   
+    let datePicker = UIDatePicker()
+    
+    
+    func createDatePicker() {
+        
+        // format createDatePicker
+        datePicker.datePickerMode = .date
+        
+        // toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        // bar button item
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([doneButton], animated: false)
+        
+        dateOfBirth.inputAccessoryView = toolbar
+        
+        dateOfBirth.inputView = datePicker
+        
+    }
+    
+    
+    
+    func donePressed() {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        //dateFormatter.dateStyle = .short
+        //dateFormatter.timeStyle = .none
+        
+        dateOfBirth.text = dateFormatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+        
+        print(datePicker.date.countDaysTo(date: Date(timeIntervalSinceNow: 0))-1)
+        
+    }
     
     
     // Populeate data, switch on which navigation item we're on
     @IBAction func populateData(_ sender: Any) {
         
+        
         switch navigation.sub {
+            
             
         case .foodService, .rideService, .maintenance, .manager:
             firstName.text = "Magnus"
             lastName.text = "Rasmussen"
-            dateOfBirth.text = "26-03-1995"
+            dateOfBirth.text = "1980/10/08"
             streetAddress.text = "Jyllingevej 12"
             city.text = "Copenhagen"
             state.text = "Sjaelland Island"
             zipCode.text = "1620"
             
         case .freeChild:
-            dateOfBirth.text = "16-05-2005"
+            
+            dateOfBirth.text = "2015/05/12"
             
         case .senior:
-            dateOfBirth.text = "05-12-1956"
+            dateOfBirth.text = "1980/10/08"
             firstName.text = "John"
             lastName.text = "Smith"
             
         case .vendor:
-            dateOfBirth.text = "24-03-1967"
-            dateOfVisit.text = "14-04-2017"
+            dateOfBirth.text = "1980/10/08"
+            dateOfVisit.text = "2017/10/08"
             firstName.text = "Julie"
             lastName.text = "Rosengaard"
             company.text = "Treehouse Inc."
@@ -162,6 +207,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
                 
                 // Try to convert zip code to int
                 let zipCodeAsInt = try convertTextFieldToInt(value: zipCode)
+                
                 
                 // init profile for scoping
                 let profile: Profile?
@@ -195,6 +241,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
                 if entrant != nil {
                     
                     // Let's segue
+                    AudioServicesPlaySystemSound(success)
                     performSegue(withIdentifier: "GeneratePass", sender: entrant)
                 }
                 
@@ -208,6 +255,7 @@ class ViewController: UIViewController, PassViewControllerDelegate {
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
                                               handler: nil))
                 
+                AudioServicesPlaySystemSound(fail)
                 present(alert, animated: true, completion: nil)
               
             // Catch errors due to number fields not being Integer
@@ -217,11 +265,19 @@ class ViewController: UIViewController, PassViewControllerDelegate {
                 let alert = UIAlertController(title: "Wrong format", message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
                                               handler: nil))
-                
+                AudioServicesPlaySystemSound(fail)
+                present(alert, animated: true, completion: nil)
+            } catch ProfileError.InvalidAge(let data) {
+                let message = "It seems like this childs birthday is \(data), which is older than 5 years."
+                let alert = UIAlertController(title: "Too old", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,
+                                              handler: nil))
+                AudioServicesPlaySystemSound(fail)
                 present(alert, animated: true, completion: nil)
                 
             // Any other errors?
             } catch {
+                AudioServicesPlaySystemSound(fail)
                 print("Other error occured")
             }
         
@@ -287,6 +343,10 @@ class ViewController: UIViewController, PassViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadFailSound()
+        loadSuccessSound()
+        
+        createDatePicker()
         
         navigationButtons = [
         
@@ -350,9 +410,26 @@ class ViewController: UIViewController, PassViewControllerDelegate {
         city.backgroundColor = UIColor.clear
         state.backgroundColor = UIColor.clear
         zipCode.backgroundColor = UIColor.clear
+        dateOfBirth.isUserInteractionEnabled = false
+        dateOfVisit.isUserInteractionEnabled = false
+        firstName.isUserInteractionEnabled = false
+        lastName.isUserInteractionEnabled = false
+        company.isUserInteractionEnabled = false
+        project.isUserInteractionEnabled = false
+        streetAddress.isUserInteractionEnabled = false
+        city.isUserInteractionEnabled = false
+        state.isUserInteractionEnabled = false
+        zipCode.isUserInteractionEnabled = false
         
         
         if navigation.main == .employee || navigation.main == .manager {
+            dateOfBirth.isUserInteractionEnabled = true
+            firstName.isUserInteractionEnabled = true
+            lastName.isUserInteractionEnabled = true
+            streetAddress.isUserInteractionEnabled = true
+            city.isUserInteractionEnabled = true
+            state.isUserInteractionEnabled = true
+            zipCode.isUserInteractionEnabled = true
             dateOfBirth.backgroundColor = UIColor.white
             firstName.backgroundColor = UIColor.white
             lastName.backgroundColor = UIColor.white
@@ -363,6 +440,11 @@ class ViewController: UIViewController, PassViewControllerDelegate {
         }
         
         if navigation.main == .vendor {
+            dateOfBirth.isUserInteractionEnabled = true
+            dateOfVisit.isUserInteractionEnabled = true
+            firstName.isUserInteractionEnabled = true
+            lastName.isUserInteractionEnabled = true
+            company.isUserInteractionEnabled = true
             dateOfBirth.backgroundColor = UIColor.white
             dateOfVisit.backgroundColor = UIColor.white
             firstName.backgroundColor = UIColor.white
@@ -372,6 +454,12 @@ class ViewController: UIViewController, PassViewControllerDelegate {
         }
         
         if navigation.main == .contractor {
+            firstName.isUserInteractionEnabled = true
+            lastName.isUserInteractionEnabled = true
+            streetAddress.isUserInteractionEnabled = true
+            city.isUserInteractionEnabled = true
+            state.isUserInteractionEnabled = true
+            zipCode.isUserInteractionEnabled = true
             firstName.backgroundColor = UIColor.white
             lastName.backgroundColor = UIColor.white
             streetAddress.backgroundColor = UIColor.white
@@ -384,9 +472,13 @@ class ViewController: UIViewController, PassViewControllerDelegate {
         switch navigation.sub {
             
         case .freeChild:
+            dateOfBirth.isUserInteractionEnabled = true
             dateOfBirth.backgroundColor = UIColor.white
             
         case .senior:
+            dateOfBirth.isUserInteractionEnabled = true
+            firstName.isUserInteractionEnabled = true
+            lastName.isUserInteractionEnabled = true
             dateOfBirth.backgroundColor = UIColor.white
             firstName.backgroundColor = UIColor.white
             lastName.backgroundColor = UIColor.white
@@ -471,10 +563,31 @@ class ViewController: UIViewController, PassViewControllerDelegate {
     }
     
     /*----------------------*/
+    
+    func loadSuccessSound() {
+        let soundUrl = Bundle.main.url(forResource: "AccessDenied", withExtension: "wav")
+        AudioServicesCreateSystemSoundID(soundUrl as! CFURL, &fail)
+    }
+    func loadFailSound() {
+        let soundUrl = Bundle.main.url(forResource: "AccessGranted", withExtension: "wav")
+        AudioServicesCreateSystemSoundID(soundUrl as! CFURL, &success)
+    }
+
 
 }
 
 
+
+
+extension Date {
+    func countDaysTo(date: Date) -> Int {
+        let components = Calendar.current.dateComponents([.day], from: self, to: date)
+        return components.day ?? 0
+    }
+    
+    
+
+}
 
 
 
